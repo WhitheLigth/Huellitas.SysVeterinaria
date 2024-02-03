@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Huellitas.SysVeterinaria.DA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Huellitas.SysVeterinaria.EN", "Huellitas.SysVeterinaria.EN\Huellitas.SysVeterinaria.EN.csproj", "{6B9FB172-A698-4AFE-B6F1-4B47FD1AE594}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Huellitas.SysVeterinaria.Web", "Huellitas.SysVeterinaria.Web\Huellitas.SysVeterinaria.Web.csproj", "{F9A0B483-A52B-4065-9E1C-AD862A1E1B61}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{6B9FB172-A698-4AFE-B6F1-4B47FD1AE594}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6B9FB172-A698-4AFE-B6F1-4B47FD1AE594}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6B9FB172-A698-4AFE-B6F1-4B47FD1AE594}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9A0B483-A52B-4065-9E1C-AD862A1E1B61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9A0B483-A52B-4065-9E1C-AD862A1E1B61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9A0B483-A52B-4065-9E1C-AD862A1E1B61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9A0B483-A52B-4065-9E1C-AD862A1E1B61}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -43,6 +49,7 @@ Global
 		{CAA64ED7-5254-4F01-A5E3-A2EF4087C699} = {B840C875-5BC4-444E-BB6C-321D3A11313C}
 		{FEAABAE8-4223-46CC-8F63-F5C963167939} = {F7F1781F-04B3-40E5-8495-E369A34C63D0}
 		{6B9FB172-A698-4AFE-B6F1-4B47FD1AE594} = {F7846B5D-E5CA-4B71-A553-B8B31ECD310A}
+		{F9A0B483-A52B-4065-9E1C-AD862A1E1B61} = {35DC1F06-B86E-492B-A134-55112E326974}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E331D4EB-DF36-44CB-A5A3-1D2E1BC51DBF}

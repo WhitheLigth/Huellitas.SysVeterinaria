@@ -1,4 +1,5 @@
 ﻿#region REFERENCIAS
+using Huellitas.SysVeterinaria.EN;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -12,8 +13,8 @@ namespace Huellitas.SysVeterinaria.DAL
 {
     public class ContextDB : DbContext
     {
-        public DbSet<> Rol { get; set; } //Coleccion que hace referencia a la tabla de la base de datos
-        public DbSet<> User { get; set; }
+        public DbSet<RolEN> Rol { get; set; } //Coleccion que hace referencia a la tabla de la base de datos
+        public DbSet<UserEN> User { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

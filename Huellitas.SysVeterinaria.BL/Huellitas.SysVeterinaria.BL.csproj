@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Huellitas.SysVeterinaria.DAL\Huellitas.SysVeterinaria.DAL.csproj" />
+    <ProjectReference Include="..\Huellitas.SysVeterinaria.EN\Huellitas.SysVeterinaria.EN.csproj" />
+  </ItemGroup>
+
 </Project>

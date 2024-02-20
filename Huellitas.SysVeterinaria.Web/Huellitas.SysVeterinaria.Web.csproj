@@ -13,4 +13,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Huellitas.SysVeterinaria.BL\Huellitas.SysVeterinaria.BL.csproj" />
+    <ProjectReference Include="..\Huellitas.SysVeterinaria.EN\Huellitas.SysVeterinaria.EN.csproj" />
+  </ItemGroup>
+
 </Project>

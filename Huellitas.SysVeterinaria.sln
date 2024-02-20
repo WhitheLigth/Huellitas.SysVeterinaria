@@ -11,13 +11,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Entities - EN", "Entities -
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "User Interface - UI", "User Interface - UI", "{35DC1F06-B86E-492B-A134-55112E326974}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Huellitas.SysVeterinaria.BL", "Huellitas.SysVeterinaria.BL\Huellitas.SysVeterinaria.BL.csproj", "{CAA64ED7-5254-4F01-A5E3-A2EF4087C699}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Huellitas.SysVeterinaria.BL", "Huellitas.SysVeterinaria.BL\Huellitas.SysVeterinaria.BL.csproj", "{CAA64ED7-5254-4F01-A5E3-A2EF4087C699}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Huellitas.SysVeterinaria.DAL", "Huellitas.SysVeterinaria.DAL\Huellitas.SysVeterinaria.DAL.csproj", "{FEAABAE8-4223-46CC-8F63-F5C963167939}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Huellitas.SysVeterinaria.DAL", "Huellitas.SysVeterinaria.DAL\Huellitas.SysVeterinaria.DAL.csproj", "{FEAABAE8-4223-46CC-8F63-F5C963167939}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Huellitas.SysVeterinaria.EN", "Huellitas.SysVeterinaria.EN\Huellitas.SysVeterinaria.EN.csproj", "{6B9FB172-A698-4AFE-B6F1-4B47FD1AE594}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Huellitas.SysVeterinaria.EN", "Huellitas.SysVeterinaria.EN\Huellitas.SysVeterinaria.EN.csproj", "{6B9FB172-A698-4AFE-B6F1-4B47FD1AE594}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Huellitas.SysVeterinaria.Web", "Huellitas.SysVeterinaria.Web\Huellitas.SysVeterinaria.Web.csproj", "{F9A0B483-A52B-4065-9E1C-AD862A1E1B61}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Huellitas.SysVeterinaria.Web", "Huellitas.SysVeterinaria.Web\Huellitas.SysVeterinaria.Web.csproj", "{F9A0B483-A52B-4065-9E1C-AD862A1E1B61}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

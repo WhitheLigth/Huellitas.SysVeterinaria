@@ -35,21 +35,5 @@ namespace Huellitas.SysVeterinaria.DAL.Login
             return UserDB;
         }
         #endregion
-
-        #region Funcion para encriptar clave del usuario
-        public static string ConvertirSha256(string texto)
-        {
-            StringBuilder Sb = new StringBuilder();
-            using (SHA256 hash = SHA256Managed.Create())
-            {
-                Encoding enc = Encoding.UTF8;
-                byte[] result = hash.ComputeHash(enc.GetBytes(texto));
-
-                foreach (byte b in result)
-                    Sb.Append(b.ToString("x2"));
-            }
-            return Sb.ToString();
-        }
-        #endregion
     }
 }

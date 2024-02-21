@@ -5,8 +5,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Huellitas.SysVeterinaria.EN.Rol;
 
-namespace Huellitas.SysVeterinaria.EN
+namespace Huellitas.SysVeterinaria.EN.User
 {
     public class UserEN
     {

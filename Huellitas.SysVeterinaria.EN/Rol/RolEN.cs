@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Huellitas.SysVeterinaria.EN
+namespace Huellitas.SysVeterinaria.EN.Rol
 {
     public class RolEN
     {
@@ -16,9 +16,9 @@ namespace Huellitas.SysVeterinaria.EN
 
 
         // Entity Name
-        [Required (ErrorMessage = "Este campo 'Nombre' es requerido")]  //Indica que es un campo requerido
-        [StringLength (50, ErrorMessage = "Este campo solo puede contener 50 palabras como maximo")] // Indica la longitud maxima para dicho campo
-        [Display (Name = "Nombre")] // Una tipo traduccion (esto lo vera el cliente)
+        [Required(ErrorMessage = "Este campo 'Nombre' es requerido")]  //Indica que es un campo requerido
+        [StringLength(50, ErrorMessage = "Este campo solo puede contener 50 palabras como maximo")] // Indica la longitud maxima para dicho campo
+        [Display(Name = "Nombre")] // Una tipo traduccion (esto lo vera el cliente)
         public string Name { get; set; } = string.Empty;
 
     }

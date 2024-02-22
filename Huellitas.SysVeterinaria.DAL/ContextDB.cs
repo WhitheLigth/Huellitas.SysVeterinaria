@@ -1,6 +1,4 @@
 ﻿#region REFERENCIAS
-using Huellitas.SysVeterinaria.EN.Rol;
-using Huellitas.SysVeterinaria.EN.User;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

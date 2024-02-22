@@ -2,19 +2,3 @@ CREATE DATABASE SysHuellitaVeterinariaDB;
 GO
 USE SysHuellitaVeterinariaDB;
 GO
-CREATE TABLE Rol(
-Id INT NOT NULL PRIMARY KEY IDENTITY (1,1),
-[Name] VARCHAR (50) NOT NULL,
-);
-GO
-CREATE TABLE [User](
-Id INT NOT NULL PRIMARY KEY IDENTITY (1,1),
-[Name] VARCHAR (50) NOT NULL,
-LastName VARCHAR (50) NOT NULL,
-Dui VARCHAR(10) NOT NULL,
-[User] VARCHAR (50) NOT NULL,
-[Password] VARCHAR(30),
-IdRol Int NOT NULL Foreign Key References Rol(Id)
-);
-GO
-

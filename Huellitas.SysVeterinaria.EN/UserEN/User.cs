@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Huellitas.SysVeterinaria.EN.Rol;
 
-namespace Huellitas.SysVeterinaria.EN.User
+namespace Huellitas.SysVeterinaria.EN.UserEN
 {
-    public class UserEN
+    public class User
     {
         // Entity ID
         [Key] //Se refiere que es la llave principal
@@ -41,7 +40,7 @@ namespace Huellitas.SysVeterinaria.EN.User
         [Required(ErrorMessage = "Este campo 'Usuario' es requerido")]  //Indica que es un campo requerido
         [StringLength(50, ErrorMessage = "Este campo solo puede contener 50 palabras como maximo")]  // Indica la longitud maxima para dicho campo
         [Display(Name = "Usuario")] // Una tipo traduccion (esto lo vera el cliente)
-        public string User { get; set; } = string.Empty;
+        public string Users { get; set; } = string.Empty;
 
 
         // Entity Password
@@ -59,6 +58,6 @@ namespace Huellitas.SysVeterinaria.EN.User
 
 
         [NotMapped]
-        public RolEN Category { get; set; } = new RolEN(); //Propiedad de agregacion
+        public RolEN.Rol Category { get; set; } = new RolEN.Rol(); //Propiedad de agregacion
     }
 }

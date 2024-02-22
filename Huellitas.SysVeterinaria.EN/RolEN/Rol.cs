@@ -5,11 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Huellitas.SysVeterinaria.EN.Rol
+namespace Huellitas.SysVeterinaria.EN.RolEN
 {
-    public class RolEN
+    public class Rol
     {
-
         // Entity Id
         [Key] //Se refiere que es la llave principal
         public int Id { get; set; }
@@ -20,6 +19,5 @@ namespace Huellitas.SysVeterinaria.EN.Rol
         [StringLength(50, ErrorMessage = "Este campo solo puede contener 50 palabras como maximo")] // Indica la longitud maxima para dicho campo
         [Display(Name = "Nombre")] // Una tipo traduccion (esto lo vera el cliente)
         public string Name { get; set; } = string.Empty;
-
     }
 }

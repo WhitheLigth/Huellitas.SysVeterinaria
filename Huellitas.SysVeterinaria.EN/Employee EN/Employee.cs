@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 // REFERENCIAS NECESARIAS PARA EL CORRECTO FUNCIONAMIENTO
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 #endregion
 
@@ -39,6 +40,12 @@ namespace Huellitas.SysVeterinaria.EN.Employee_EN
         [Display(Name = "Fecha de Nacimiento")] // Una tipo traduccion (esto lo vera el cliente) 
         [DataType(DataType.Date, ErrorMessage = "Por favor, introduce una fecha válida")]
         public DateTime BirthDate { get; set; } = DateTime.MinValue;
+
+        [Required(ErrorMessage = "La edad es requerida")] //Indica que es un campo requerido
+        [StringLength(3, ErrorMessage = "Maximo 3 caracteres")] // Indica la longitud maxima para dicho campo
+        [Display(Name = "Edad")] // Una tipo traduccion (esto lo vera el cliente) 
+        [RegularExpression("^[0-9]+$", ErrorMessage = "La edad debe contener solo números")] // Validamos el tipo de dato
+        public string Age { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "El Genero es requerido")] //Indica que es un campo requerido
         [StringLength(10, ErrorMessage = "Maximo 10 caracteres")] // Indica la longitud maxima para dicho campo
@@ -126,6 +133,9 @@ namespace Huellitas.SysVeterinaria.EN.Employee_EN
         [Display(Name = "Fecha de Modificacion")] // Una tipo traduccion (esto lo vera el cliente) 
         [DataType(DataType.Date, ErrorMessage = "Por favor, introduce una fecha válida")]
         public DateTime ModificationDate { get; set; } = DateTime.MinValue;
+
+        [NotMapped]
+        public int Top_Aux { get; set; } //Propiedad auxiliar
 
         #endregion
     }

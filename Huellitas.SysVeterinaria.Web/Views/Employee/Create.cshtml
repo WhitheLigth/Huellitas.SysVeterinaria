@@ -1,109 +1,141 @@
 ﻿@model Huellitas.SysVeterinaria.EN.Employee_EN.Employee
 
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
     ViewData["Title"] = "Create";
-
+    Layout = "_Layout"; //Permite la navegacion hacia el layout
 }
 
+<h1>Mantenimiento Empleados</h1>
 
-<form>
+<h2>Informacion Personal / Informacion Adicional</h2>
+<hr />
 
-    <h1>Mantenimiento Empleados</h1>
+<form asp-action="Create">
 
-     <h2>Informacion Personal / Informacion Adicional</h2>
-
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div style="display:flex">
+
         <div class="mb-3" style="margin-right:3%">
-            <label class="form-label">Nombre:</label>
-            <input type="text" class="form-control" placeholder="Ingresar">
+            <label asp-for="Name" class="form-label"></label>
+            <input asp-for="Name" type="text" class="form-control" placeholder="Ingresar" />
+            <span asp-validation-for="Name" class="text-danger"></span>
         </div>
+
         <div class="mb-3" style="margin-right:3%">
-            <label class="form-label">Apellido:</label>
-            <input type="text" class="form-control" placeholder="Ingresar">
+            <label asp-for="LastName" class="form-label"></label>
+            <input asp-for="LastName" type="text" class="form-control" placeholder="Ingresar" />
+            <span asp-validation-for="LastName" class="text-danger"></span>
         </div>
+
         <div class="mb-3" style="margin-right:3%">
-            <label class="form-label">Dui:</label>
-            <input type="text" class="form-control" placeholder="xxxxxxxx-x">
+            <label asp-for="Dui" class="form-label"></label>
+            <input asp-for="Dui" type="text" class="form-control" placeholder="xxxxxxxx-x" />
+            <span asp-validation-for="Dui" class="text-danger"></span>
         </div>
+
         <div class="mb-3" style="margin-right:3%">
-            <label class="form-label">Fecha de Nacimiento:</label>
-            <input type="date" class="form-control">
+            <label asp-for="BirthDate" class="form-label"></label>
+            <input asp-for="BirthDate" type="date" class="form-control" />
+            <span asp-validation-for="BirthDate" class="text-danger"></span>
         </div>
+
         <div class="mb-3" style="margin-right:3%">
-            <label class="form-label">Edad:</label>
-            <input type="text" class="form-control p-2" placeholder="Ingresar">
+            <label asp-for="Age" class="form-label"></label>
+            <input asp-for="Age" type="text" class="form-control" placeholder="Ingresar" />
+            <span asp-validation-for="Age" class="text-danger"></span>
         </div>
     </div>
+
     <div style="display:flex">
         <div class="mb-3" style="margin-right:3%">
-            <label class="form-label">Genero:</label>
-            <select class="form-select" required>
+            <label asp-for="Gender" class="form-label"></label>
+            <select class="form-select" name="Gender">
                 <option value="seleccionar">Seleccionar..</option>
                 <option value="masculino">Masculino</option>
                 <option value="femenino">Femenino</option>
                 <option value="otro">Otro</option>
             </select>
+            <span asp-validation-for="Gender" class="text-danger"></span>
         </div>
+
         <div class="mb-3" style="margin-right:3%">
-            <label class="form-label">Estado Civil:</label>
-            <select class="form-select" required>
+            <label asp-for="CivilStatus" class="form-label"></label>
+            <select class="form-select" name="CivilStatus">
                 <option value="seleccionar">Seleccionar..</option>
                 <option value="soltero/a">Soltero/a</option>
                 <option value="casado/a">Casado/a</option>
                 <option value="divorciado/a">Divorciado/a</option>
                 <option value="viudo/a">Viudo/a</option>
             </select>
+            <span asp-validation-for="CivilStatus" class="text-danger"></span>
         </div>
+
         <div class="mb-3" style="margin-right:3%">
-            <label class="form-label">Direccion:</label>
-            <input type="text" class="form-control" placeholder="Ingresar">
+            <label asp-for="Address" class="form-label"></label>
+            <input asp-for="Address" type="text" class="form-control" placeholder="Ingresar" />
+            <span asp-validation-for="Address" class="text-danger"></span>
         </div>
+
         <div class="mb-3" style="margin-right:3%">
-            <label class="form-label">Correo Electronico:</label>
-            <input type="email" class="form-control" placeholder="Ingresar">
+            <label asp-for="Phone" class="form-label"></label>
+            <input asp-for="Phone" type="text" class="form-control" placeholder="Ingresar" />
+            <span asp-validation-for="Phone" class="text-danger"></span>
         </div>
+
         <div class="mb-3" style="margin-right:3%">
-            <label class="form-label">Telefono:</label>
-            <input type="text" class="form-control" placeholder="Ingresar">
+            <label asp-for="Email" class="form-label"></label>
+            <input asp-for="Email" type="text" class="form-control" placeholder="Ingresar" />
+            <span asp-validation-for="Email" class="text-danger"></span>
         </div>
+
         <div class="mb-3" style="margin-right:3%">
-            <label class="form-label">Telefono de Emergencia:</label>
-            <input type="text" class="form-control" placeholder="Ingresar">
+            <label asp-for="EmergencyNumber" class="form-label"></label>
+            <input asp-for="EmergencyNumber" type="text" class="form-control" placeholder="Ingresar" />
+            <span asp-validation-for="EmergencyNumber" class="text-danger"></span>
         </div>
     </div>
+
     <div style="display:flex">
         <div class="mb-3" style="margin-right:3%">
-            <label class="form-label">Titulo Academico:</label>
-            <input type="text" class="form-control" placeholder="Ingresar">
+            <label asp-for="AcademicTitle" class="form-label"></label>
+            <input asp-for="AcademicTitle" type="text" class="form-control" placeholder="Ingresar" />
+            <span asp-validation-for="AcademicTitle" class="text-danger"></span>
         </div>
         <div class="mb-3" style="margin-right:3%">
-            <label class="form-label">Area de Especializacion:</label>
-            <input type="text" class="form-control" placeholder="Ingresar">
+            <label asp-for="AreaOfSpecialization" class="form-label"></label>
+            <input asp-for="AreaOfSpecialization" type="text" class="form-control" placeholder="Ingresar" />
+            <span asp-validation-for="AreaOfSpecialization" class="text-danger"></span>
         </div>
         <div class="mb-3" style="margin-right:3%">
-            <label class="form-label">Puesto:</label>
-            <select class="form-select" required>
+            <label asp-for="Position" class="form-label"></label>
+            <select class="form-select" name="Position">
                 <option value="seleccionar">Seleccionar..</option>
                 <option value="veterinario/a">Veterinario/a</option>
                 <option value="enfermero/a">Enfermero/a</option>
                 <option value="secretario/a">Secretario/a</option>
-                <option value="viudo/a">Personal de Limpieza/a</option>
+                <option value="viudo/a">Personal de Limpieza</option>
             </select>
-        </div>
-        <div class="mb-3" style="margin-right:3%">
-            <label class="form-label">Alergias Conocidas:</label>
-            <input type="text" class="form-control" placeholder="Ingresar">
+            <span asp-validation-for="Position" class="text-danger"></span>
         </div>
         <div class="mb-4" style="margin-right:3%">
-            <label class="form-label">Condicion Medica Relevante:</label>
-            <input type="text" class="form-control" placeholder="Ingresar">
+            <label asp-for="RelevantMedicalConditions" class="form-label"></label>
+            <input asp-for="RelevantMedicalConditions" type="text" class="form-control" placeholder="Ingresar" />
+            <span asp-validation-for="RelevantMedicalConditions" class="text-danger"></span>
+        </div>
+        <div class="mb-3" style="margin-right:3%">
+            <label asp-for="KnownAllergies" class="form-label"></label>
+            <input asp-for="KnownAllergies" type="text" class="form-control" placeholder="Ingresar" />
+            <span asp-validation-for="KnownAllergies" class="text-danger"></span>
         </div>
     </div>
+
     <div class="mb-3" style="margin-right:3%">
-        <label class="form-label">Experiencia Laboral:</label>
-        <input type="text" class="form-control" placeholder="Ingresar">
+        <label asp-for="WorkExperience" class="form-label"></label>
+        <input asp-for="WorkExperience" type="text" class="form-control" placeholder="Ingresar" />
+        <span asp-validation-for="WorkExperience" class="text-danger"></span>
     </div>
+
+
     <div style="display:inline-flex">
         <div class="mb-3">
             <input type="text" class="form-control" placeholder="Buscar Empleado">
@@ -111,10 +143,11 @@
         <div class="mb-3" style="margin-right:3%">
             <a href="#" class="btn btn-success m-1">Buscar</a>
         </div>
-        <div class="mb-3">
-            <a href="#" class="btn btn-primary m-1">Guardar Empleado</a>
+        <div class="form-group mb-3">
+            <input type="submit" value="Grardar" class="btn btn-primary" />
         </div>
     </div>
+
 
     <div class="card w-200">
         <div class="card-body p-4">

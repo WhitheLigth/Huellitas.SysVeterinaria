@@ -48,7 +48,6 @@ namespace Huellitas.SysVeterinaria.DAL.Employee___DAL
                     employeeDB.Email = employee.Email;
                     employeeDB.EmergencyNumber = employee.EmergencyNumber;
                     employeeDB.AcademicTitle = employee.AcademicTitle;
-                    employeeDB.Certification = employee.Certification;
                     employeeDB.CertifWorkExperienceication = employee.CertifWorkExperienceication;
                     employeeDB.AreaOfSpecialization = employee.AreaOfSpecialization;
                     employeeDB.Position = employee.Position;

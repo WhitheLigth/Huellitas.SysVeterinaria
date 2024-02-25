@@ -1,0 +1,90 @@
+﻿@model Huellitas.SysVeterinaria.EN.Employee_EN.Employee
+
+@{
+    ViewData["Title"] = "Delete";
+}
+<br />
+<br />
+<br />
+<br />
+
+<h2>Estas seguro que quieres eliminar el registro de: @Html.DisplayFor(model => model.Name)</h2>
+<hr />
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h2>Información Personal</h2>
+            <dl class="row">
+                <dt class="col-sm-3 form-label">Nombre:</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Name)</dd>
+
+                <dt class="col-sm-3 form-label">Apellido:</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.LastName)</dd>
+
+                <dt class="col-sm-3 form-label">Dui:</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Dui)</dd>
+
+                <dt class="col-sm-3 form-label">Nombre:</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.BirthDate)</dd>
+
+                <dt class="col-sm-3 form-label">Edad:</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Age)</dd>
+
+                <dt class="col-sm-3 form-label">Genero:</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Gender)</dd>
+
+                <dt class="col-sm-3 form-label">Estado Civil:</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.CivilStatus)</dd>
+
+                <dt class="col-sm-3 form-label">Direccion:</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Address)</dd>
+
+                <dt class="col-sm-3 form-label">Telefono:</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Phone)</dd>
+
+                <dt class="col-sm-3 form-label">Corrreo:</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Email)</dd>
+
+                <dt class="col-sm-3 form-label">Numero de Emergencia:</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.EmergencyNumber)</dd>
+            </dl>
+        </div>
+        <div class="col">
+            <h2>Información Adicional</h2>
+            <dl class="row">
+                <dt class="col-sm-3 form-label">Titulo academico:</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.AcademicTitle)</dd>
+
+                <dt class="col-sm-3 form-label">Experiencia laboral:</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.WorkExperience)</dd>
+
+                <dt class="col-sm-3 form-label">Area de especializacion:</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.AreaOfSpecialization)</dd>
+
+                <dt class="col-sm-3 form-label">Puesto o cargo:</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Position)</dd>
+
+                <dt class="col-sm-3 form-label">Alergias conocidas:</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.KnownAllergies)</dd>
+
+                <dt class="col-sm-3 form-label">Condiciones mas relevantes:</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.RelevantMedicalConditions)</dd>
+
+                <dt class="col-sm-3 form-label">Fecha de creacion:</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.CreationDate)</dd>
+
+                <dt class="col-sm-3 form-label">Fecha de modificacion:</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.ModificationDate)</dd>
+            </dl>
+        </div>
+    </div>
+</div>
+
+
+<form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+    <a asp-action="Index" class="btn btn-success">Regresar</a>
+    </form>
+</div>

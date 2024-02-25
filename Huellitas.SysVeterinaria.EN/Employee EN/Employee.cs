@@ -92,7 +92,7 @@ namespace Huellitas.SysVeterinaria.EN.Employee_EN
         [StringLength(100, ErrorMessage = "Maximo 100 caracteres")] // Indica la longitud maxima para dicho campo
         [Display(Name = "Experiencia Laboral")] // Una tipo traduccion (esto lo vera el cliente) 
         [RegularExpression("^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$", ErrorMessage = "La Experiencia debe contener solo Letras")] // Validamos el tipo de dato
-        public string CertifWorkExperienceication { get; set; } = string.Empty;
+        public string WorkExperience { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "El Area de Especializacion es requerido")] //Indica que es un campo requerido
         [StringLength(100, ErrorMessage = "Maximo 100 caracteres")] // Indica la longitud maxima para dicho campo

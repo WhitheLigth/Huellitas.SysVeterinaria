@@ -50,13 +50,11 @@ namespace Huellitas.SysVeterinaria.EN.Employee_EN
         [Required(ErrorMessage = "El Genero es requerido")] //Indica que es un campo requerido
         [StringLength(10, ErrorMessage = "Maximo 10 caracteres")] // Indica la longitud maxima para dicho campo
         [Display(Name = "Genero")] // Una tipo traduccion (esto lo vera el cliente) 
-        [RegularExpression("^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$", ErrorMessage = "El Genero debe contener solo Letras")] // Validamos el tipo de dato
         public string Gender { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "El Estado Civil es requerido")] //Indica que es un campo requerido
         [StringLength(30, ErrorMessage = "Maximo 30 caracteres")] // Indica la longitud maxima para dicho campo
         [Display(Name = "Estado Civil")] // Una tipo traduccion (esto lo vera el cliente) 
-        [RegularExpression("^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$", ErrorMessage = "El Estado Civil debe contener solo Letras")] // Validamos el tipo de dato
         public string CivilStatus { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "La Direccion es requerido")] //Indica que es un campo requerido
@@ -103,7 +101,6 @@ namespace Huellitas.SysVeterinaria.EN.Employee_EN
         [Required(ErrorMessage = "El Puesto o Cargo es requerido")] //Indica que es un campo requerido
         [StringLength(100, ErrorMessage = "Maximo 100 caracteres")] // Indica la longitud maxima para dicho campo
         [Display(Name = "Puesto o Cargo")] // Una tipo traduccion (esto lo vera el cliente) 
-        [RegularExpression("^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$", ErrorMessage = "El Puesto o Cargo debe contener solo Letras")] // Validamos el tipo de dato
         public string Position { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "Alergias Conocidas es requerido")] //Indica que es un campo requerido

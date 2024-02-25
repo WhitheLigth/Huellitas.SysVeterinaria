@@ -33,7 +33,7 @@ namespace Huellitas.SysVeterinaria.EN.Employee_EN
         [Required(ErrorMessage = "El Dui es requerido")] //Indica que es un campo requerido
         [StringLength(10, ErrorMessage = "Maximo 10 caracteres")] // Indica la longitud maxima para dicho campo
         [Display(Name = "Dui")] // Una tipo traduccion (esto lo vera el cliente) 
-        [RegularExpression("^[0-9]+$", ErrorMessage = "El Dui debe contener solo números")] // Validamos el tipo de dato
+        [RegularExpression("^[0-9-]+$", ErrorMessage = "El Dui debe contener solo números")] // Validamos el tipo de dato
         public string Dui { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "La fecha de nacimiento es requerida")] //Indica que es un campo requerido
@@ -65,13 +65,12 @@ namespace Huellitas.SysVeterinaria.EN.Employee_EN
         [Required(ErrorMessage = "El Telefono es requerido")] //Indica que es un campo requerido
         [StringLength(10, ErrorMessage = "Maximo 10 caracteres")] // Indica la longitud maxima para dicho campo
         [Display(Name = "Telefono")] // Una tipo traduccion (esto lo vera el cliente) 
-        [RegularExpression("^[0-9]+$", ErrorMessage = "El Telefono debe contener solo números")] // Validamos el tipo de dato
+        [RegularExpression("^[0-9-]+$", ErrorMessage = "El Telefono debe contener solo números")] // Validamos el tipo de dato
         public string Phone { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "El Correo Electronico es requerido")] //Indica que es un campo requerido
         [StringLength(50, ErrorMessage = "Maximo 50 caracteres")] // Indica la longitud maxima para dicho campo
         [Display(Name = "Correo Electronico")] // Una tipo traduccion (esto lo vera el cliente) 
-        [RegularExpression("^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$", ErrorMessage = "El Correo Electronico debe contener solo Letras")] // Validamos el tipo de dato
         public string Email { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "El Numero de Emergencia es requerido")] //Indica que es un campo requerido

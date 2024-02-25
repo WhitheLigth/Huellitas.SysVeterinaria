@@ -33,7 +33,7 @@ namespace Huellitas.SysVeterinaria.DAL.Employee___DAL
             int result = 0;
             using (var dbContext = new ContextDB())
             {
-                var employeeDB = await dbContext.Employee.FirstOrDefaultAsync(c => c.Id == employee.Id);
+                var employeeDB = await dbContext.Employees.FirstOrDefaultAsync(c => c.Id == employee.Id);
                 if (employeeDB != null)
                 {
                     employeeDB.Name = employee.Name;
@@ -48,7 +48,7 @@ namespace Huellitas.SysVeterinaria.DAL.Employee___DAL
                     employeeDB.Email = employee.Email;
                     employeeDB.EmergencyNumber = employee.EmergencyNumber;
                     employeeDB.AcademicTitle = employee.AcademicTitle;
-                    employeeDB.CertifWorkExperienceication = employee.CertifWorkExperienceication;
+                    employeeDB.WorkExperience = employee.WorkExperience;
                     employeeDB.AreaOfSpecialization = employee.AreaOfSpecialization;
                     employeeDB.Position = employee.Position;
                     employeeDB.KnownAllergies = employee.KnownAllergies;
@@ -70,10 +70,10 @@ namespace Huellitas.SysVeterinaria.DAL.Employee___DAL
             int result = 0;
             using (var dbContext = new ContextDB())
             {
-                var employeeDB = await dbContext.Employee.FirstOrDefaultAsync(a => a.Id == employee.Id);
+                var employeeDB = await dbContext.Employees.FirstOrDefaultAsync(a => a.Id == employee.Id);
                 if (employeeDB != null)
                 {
-                    dbContext.Employee.Remove(employeeDB);
+                    dbContext.Employees.Remove(employeeDB);
                     result = await dbContext.SaveChangesAsync();
                 }
             }
@@ -87,7 +87,7 @@ namespace Huellitas.SysVeterinaria.DAL.Employee___DAL
             var employeeDB = new Employee();
             using (var dbContext = new ContextDB())
             {
-                employeeDB = await dbContext.Employee.FirstOrDefaultAsync(c => c.Id == employee.Id);
+                employeeDB = await dbContext.Employees.FirstOrDefaultAsync(c => c.Id == employee.Id);
             }
             return employeeDB;
         }
@@ -99,7 +99,7 @@ namespace Huellitas.SysVeterinaria.DAL.Employee___DAL
             var employees = new List<Employee>();
             using (var dbContext = new ContextDB())
             {
-                employees = await dbContext.Employee.ToListAsync();
+                employees = await dbContext.Employees.ToListAsync();
             }
             return employees;
         }
@@ -138,7 +138,7 @@ namespace Huellitas.SysVeterinaria.DAL.Employee___DAL
             var employees = new List<Employee>();
             using (var dbContext = new ContextDB())
             {
-                var select = dbContext.Employee.AsQueryable();
+                var select = dbContext.Employees.AsQueryable();
                 select = QuerySelect(select, employee);
                 employees = await select.ToListAsync();
             }

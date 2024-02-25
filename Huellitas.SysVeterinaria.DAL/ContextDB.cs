@@ -14,12 +14,13 @@ namespace Huellitas.SysVeterinaria.DAL
     public class ContextDB : DbContext
     {
 
-        public DbSet<Employee> Employee { get; set; } //Coleccion que hace referencia a la tabla de la base de datos
+        public DbSet<Employee> Employees { get; set; } //Coleccion que hace referencia a la tabla de la base de datos
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@""); //Poner str de concexion local
+            optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-ND37IL0\SQLEXPRESS;Initial Catalog=SysHuellitaVeterinariaDB;
+                                        Integrated Security=True; Encrypt = False; Trust Server Certificate=True"); //Poner str de concexion local
         }
     }
 }

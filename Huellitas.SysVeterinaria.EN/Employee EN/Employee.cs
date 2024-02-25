@@ -88,12 +88,6 @@ namespace Huellitas.SysVeterinaria.EN.Employee_EN
         [RegularExpression("^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$", ErrorMessage = "El Titulo Academico debe contener solo Letras")] // Validamos el tipo de dato
         public string AcademicTitle { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "Certificacion es requerido")] //Indica que es un campo requerido
-        [StringLength(100, ErrorMessage = "Maximo 100 caracteres")] // Indica la longitud maxima para dicho campo
-        [Display(Name = "Certificacion")] // Una tipo traduccion (esto lo vera el cliente) 
-        [RegularExpression("^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$", ErrorMessage = "La Certificacion debe contener solo Letras")] // Validamos el tipo de dato
-        public string Certification { get; set; } = string.Empty;
-
         [Required(ErrorMessage = "La Experiencia Laboral es requerido")] //Indica que es un campo requerido
         [StringLength(100, ErrorMessage = "Maximo 100 caracteres")] // Indica la longitud maxima para dicho campo
         [Display(Name = "Experiencia Laboral")] // Una tipo traduccion (esto lo vera el cliente) 

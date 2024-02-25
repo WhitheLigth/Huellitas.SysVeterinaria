@@ -2,13 +2,60 @@
 
 @{
     ViewData["Title"] = "Index";
+    int numPage = 1; // Paginacion
+    int numRegistros = 0; // reset de la paginacion
+    int numRegistrosPorPage = 10; //Dato a mostrar en la paginacion
+    int[] tops = { 10, 20, 50, 100, 500, 1000, 10000, -1 }; // para que el user eliga cuantos registros quiere mostrar
+    int topActual = Convert.ToInt32(ViewBag.Top); //controla cuanto registros ha seleccionado el usario
 }
+<br />
+<br />
+<br />
+<br />
 
-<h1>Index</h1>
+<h1>Mantenimiento Empleados</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<form asp-action="Index">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label">Nombre</label>
+                <input type="text" class="form-control" name="Name" />
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label">Dui</label>
+                <input type="text" class="form-control" name="Dui" />
+            </div>
+        </div>
+
+        <div class="col-md-2">
+            <div class="form-group">
+                <label class="control-label">Top</label>
+                <select name="Top_Aux" class="form-control">
+                    @foreach (var item in tops)
+                    {
+                        string strItem = item != -1 ? item.ToString() : "Todos";
+                        if (item != topActual)
+                        {
+                            <option value="@item">@strItem</option>
+                        }
+                        else
+                        {
+                            <option selected value="@item">@strItem</option>
+                        }
+                    }
+                </select>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-md-4 m-2">
+        <input type="submit" value="Buscar" class="btn btn-outline-info" /> &nbsp;&nbsp;
+        <a asp-action="Create" class="btn btn-outline-primary">Nuevo Empleado</a>
+    </div>
+</form>
 <table class="table">
     <thead>
         <tr>
@@ -25,131 +72,71 @@
                 @Html.DisplayNameFor(model => model.Dui)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.BirthDate)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Age)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Gender)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CivilStatus)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Address)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Phone)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EmergencyNumber)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AcademicTitle)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.WorkExperience)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AreaOfSpecialization)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Position)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.KnownAllergies)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RelevantMedicalConditions)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreationDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ModificationDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Top_Aux)
-            </th>
+
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Dui)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BirthDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Age)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Gender)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CivilStatus)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Address)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Phone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EmergencyNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AcademicTitle)
-            </td>
-            <td>
-                    @Html.DisplayFor(modelItem => item.WorkExperience)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AreaOfSpecialization)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Position)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.KnownAllergies)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RelevantMedicalConditions)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreationDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ModificationDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Top_Aux)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Dui)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Age)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gender)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Position)
+                </td>
+                <td>
+                    @Html.ActionLink("Modificar", "Edit", new { id = item.Id }, new { @class = "btn btn-outline-info" }) |
+                    @Html.ActionLink("Detalles", "Details", new { id = item.Id }, new { @class = "btn btn-outline-secondary" }) |
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.Id }, new { @class = "btn btn-outline-danger" })
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
+@if (numPage > 1)
+{
+    <div class="row" style="overflow:auto">
+        <div class="col-md-12">
+            <ul class="pagination paginationjs" data-numpage="@numPage" data-pageactive="1">
+                <li class="page-item" data-typepage="Previous"><a class="page-link" href="#">Previous</a></li>
+                @for (var i = 1; i <= numPage; i++)
+                {
+                    <li class="page-item" data-page="@i" data-typepage="Item"><a class="page-link" href="#">@i</a></li>
+                }
+                <li class="page-item" data-typepage="Next"><a class="page-link" href="#">Next</a></li>
+            </ul>
+        </div>
+    </div>
+}

@@ -1,36 +1,41 @@
-﻿using Huellitas.SysVeterinaria.EN.Employee_EN;
-using Microsoft.EntityFrameworkCore;
+﻿#region REFERENCIAS
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+// Referencias necesarias para el correcto funcionamiento
+using Huellitas.SysVeterinaria.EN.Employee_EN;
+using Microsoft.EntityFrameworkCore;
+
+
+#endregion
 
 namespace Huellitas.SysVeterinaria.DAL.Employee___DAL
 {
     public class EmployeeDAL
     {
-        #region Metodo de agregar (Create)
-        // El STATIC sirve para tener acceso sin necesidad de hacer una instancia 
-        // El async significa que las peticiones se haran en donde haya cupo (usando todos los recursos de la PC) para que sea mas fluido 
-        // Task si se trabaja con async siempre (C#) se usara TASK por que async devuelve una tarea (task) 
+        #region METODO PARA CREAR
+        // Metodo para crear un nuevo registro en la base de datos
         public static async Task<int> CreateAsync (Employee employee)
         {
             int result = 0;
-            // Un bloque de conexion que mientras se permanezca en el bloque l base de datos permanecera abierta y al terminar se destruira
+            // Un bloque de conexion que mientras se permanezca en el bloque la base de datos permanecera abierta y al terminar se destruira
             using (var dbContext = new ContextDB())
             {
                 dbContext.Add(employee);
-                result = await dbContext.SaveChangesAsync(); // Await sirve para esperar a terminar todos los procesos para devolverlos todos juntos
+                result = await dbContext.SaveChangesAsync();
             }
             return result;  // Si se realizo con exito devuelve 1 sino devuelve 0
         }
         #endregion
 
-        #region Metodo de Actualizar (Update)
+        #region METODO PARA MODIFICAR
+        // Metodo para modificar un registro ya existente en la base de datos
         public static async Task<int> UpdateAsync(Employee employee)
         {
             int result = 0;
+            // Un bloque de conexion que mientras se permanezca en el bloque la base de datos permanecera abierta y al terminar se destruira
             using (var dbContext = new ContextDB())
             {
                 var employeeDB = await dbContext.Employees.FirstOrDefaultAsync(c => c.Id == employee.Id);
@@ -64,13 +69,15 @@ namespace Huellitas.SysVeterinaria.DAL.Employee___DAL
         }
         #endregion
 
-        #region Metodo Eliminar (Delete or Remove)
+        #region METODO PARA ELIMINAR
+        // Metodo para eliminar un registro de la base de datos
         public static async Task<int> DeleteAsync(Employee employee)
         {
             int result = 0;
             using (var dbContext = new ContextDB())
             {
                 var employeeDB = await dbContext.Employees.FirstOrDefaultAsync(a => a.Id == employee.Id);
+                // Un bloque de conexion que mientras se permanezca en el bloque la base de datos permanecera abierta y al terminar se destruira
                 if (employeeDB != null)
                 {
                     dbContext.Employees.Remove(employeeDB);
@@ -81,10 +88,12 @@ namespace Huellitas.SysVeterinaria.DAL.Employee___DAL
         }
         #endregion
 
-        #region Metodo Mostrar por ID
+        #region METODO PARA MOSTRAR POR ID
+        // Metodo para mostrar un registro por su id
         public static async Task<Employee> GetByIdAsync(Employee employee)
         {
             var employeeDB = new Employee();
+            // Un bloque de conexion que mientras se permanezca en el bloque la base de datos permanecera abierta y al terminar se destruira
             using (var dbContext = new ContextDB())
             {
                 employeeDB = await dbContext.Employees.FirstOrDefaultAsync(c => c.Id == employee.Id);
@@ -93,10 +102,12 @@ namespace Huellitas.SysVeterinaria.DAL.Employee___DAL
         }
         #endregion
 
-        #region Mostrar todos
+        #region METODO PARA MOSTRAR LA LISTA DE REGISTROS
+        // Metodo para obtener toda la lista de registros y mostrarlos
         public static async Task<List<Employee>> GetAllAsync()
         {
             var employees = new List<Employee>();
+            // Un bloque de conexion que mientras se permanezca en el bloque la base de datos permanecera abierta y al terminar se destruira
             using (var dbContext = new ContextDB())
             {
                 employees = await dbContext.Employees.ToListAsync();
@@ -105,7 +116,8 @@ namespace Huellitas.SysVeterinaria.DAL.Employee___DAL
         }
         #endregion
 
-        #region Metodo de Buscar Registros mediante el uso de filtros (Por Id, Por Nombre y por DUI)
+        #region METODO PARA BUSCAR REGISTROS MEDIANTE EL USO DE FILTROS FILTRAR
+        // Metodo para filtrar la busqueda
         // IQueryable es una interfaz que toma un coleccion a la cual se le pueden implementar multiples consultas (Filtros) 
         internal static IQueryable<Employee> QuerySelect(IQueryable<Employee> query, Employee employee)
         {
@@ -128,11 +140,11 @@ namespace Huellitas.SysVeterinaria.DAL.Employee___DAL
                 query = query.Take(employee.Top_Aux).AsQueryable();
 
             return query;
-
         }
         #endregion
 
-        #region Metodo de buscar
+        #region METODO PARA BUSCAR
+        // Metodo para buscar registros en la base de datos
         public static async Task<List<Employee>> SearchAsync(Employee employee)
         {
             var employees = new List<Employee>();

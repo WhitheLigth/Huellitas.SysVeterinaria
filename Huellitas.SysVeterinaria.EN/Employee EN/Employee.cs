@@ -124,9 +124,10 @@ namespace Huellitas.SysVeterinaria.EN.Employee_EN
         [DataType(DataType.Date, ErrorMessage = "Por favor, introduce una fecha válida")]
         public DateTime ModificationDate { get; set; } = DateTime.MinValue;
 
+        #endregion
+
+        // Propiedades No Mapebles
         [NotMapped]
         public int Top_Aux { get; set; } //Propiedad auxiliar
-
-        #endregion
     }
 }

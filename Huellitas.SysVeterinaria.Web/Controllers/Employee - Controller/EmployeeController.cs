@@ -1,16 +1,22 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-
+﻿#region REFERENCIAS
+using Microsoft.AspNetCore.Http;
+// Referencias necesarias para el correcto funcionamiento
 using Huellitas.SysVeterinaria.BL.Employee___BL;
 using Huellitas.SysVeterinaria.EN.Employee_EN;
+using Microsoft.AspNetCore.Mvc;
+
+
+#endregion
 
 namespace Huellitas.SysVeterinaria.Web.Controllers.Employee___Controller
 {
     public class EmployeeController : Controller
     {
+        // Creamos la instancia para acceder a los metodos
         EmployeeBL employeeBL = new EmployeeBL();
 
-        // GET: EmployeeController (accion que muestra el listado de las categorias)
+        #region METODO PARA MOSTRAR INDEX
+        // Accion Para Mostrar La Vista Index
         public async Task<IActionResult> Index(Employee employee = null)
         {
             if (employee == null)
@@ -24,22 +30,26 @@ namespace Huellitas.SysVeterinaria.Web.Controllers.Employee___Controller
             ViewBag.Top = employee.Top_Aux;
             return View(employees);
         }
+        #endregion
 
-        // GET: EmployeeController/Details/5 ( accion que muestra el detalle de un registro)
+        #region METODO PARA MOSTRAR DETALLES
+        // Accion Que Muestra El Detalle De Un Registro
         public async Task<IActionResult> Details(int id)
         {
             var employee = await employeeBL.GetByIdAsync(new Employee { Id = id });
             return View(employee);
         }
+        #endregion
 
-        // GET: EmployeeController/Create (accion que MUESTRA el formulario para crear una categoria)
+        #region METODO PARA CREAR
+        // Accion Para Mostrar La Vista De Crear
         public ActionResult Create()
         {
             ViewBag.Error = "";
             return View();
         }
 
-        // POST: EmployeeController/Create (accion que recibe los datos del formulario para ser enviados a la basede datos)
+        // Accion Que Recibe Los Datos Del Formulario Para Ser Enviados a La BD
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Employee employee)
@@ -55,8 +65,10 @@ namespace Huellitas.SysVeterinaria.Web.Controllers.Employee___Controller
                 return View();
             }
         }
+        #endregion
 
-        // GET: EmployeeController/Edit/5 (Accion que muestra el formulario para actualizar el registro)
+        #region METODO PARA MODIFICAR
+        // Accion Que Muestra La Vista De Modificar
         public async Task<IActionResult> Edit(int id)
         {
             var employee = await employeeBL.GetByIdAsync(new Employee { Id = id });
@@ -64,7 +76,7 @@ namespace Huellitas.SysVeterinaria.Web.Controllers.Employee___Controller
             return View(employee);
         }
 
-        // POST: EmployeeController/Edit/5 (Accion que recibe los datos modificados y los envia a la bd)
+        // Accion Que Recibe Los Datos Del Formulario Para Ser Enviados a La BD
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Employee employee)
@@ -80,8 +92,10 @@ namespace Huellitas.SysVeterinaria.Web.Controllers.Employee___Controller
                 return View();
             }
         }
+        #endregion
 
-        // GET: EmployeeController/Delete/5 (Accion que muestra el formulario par eliminar)
+        #region METODO PARA ELIMINAR
+        // Accion Que Muestra La Vista De Eliminar
         public async Task<IActionResult> Delete(int id)
         {
             var employee = await employeeBL.GetByIdAsync(new Employee { Id = id });
@@ -89,7 +103,7 @@ namespace Huellitas.SysVeterinaria.Web.Controllers.Employee___Controller
             return View(employee);
         }
 
-        // POST: EmployeeController/Delete/5 (Accion que recibe los datos del formulario y los manda a la bd)
+        // Accion Que Recibe Los Datos Del Formulario Para Ser Enviados a La BD
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id, Employee employee)
@@ -105,5 +119,6 @@ namespace Huellitas.SysVeterinaria.Web.Controllers.Employee___Controller
                 return View();
             }
         }
+        #endregion
     }
 }

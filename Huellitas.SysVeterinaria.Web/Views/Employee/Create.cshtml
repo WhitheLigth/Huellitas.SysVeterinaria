@@ -198,8 +198,8 @@
         var fechaInput = document.querySelector('input[name="BirthDate"]'); // Obtenemos la referencia al elemento de entrada de fecha y edad
         var edadInput = document.querySelector('input[name="Age"]');
 
-        // Agrega un event listener para el cambio en la fecha de nacimiento
-        fechaInput.addEventListener('change', function () {
+        // Función para calcular la edad
+        function calcularEdad() {
             var fechaNacimiento = new Date(fechaInput.value);
             var fechaActual = new Date();
 
@@ -211,8 +211,15 @@
                 edad--;
             }
             edadInput.value = edad; // Actualiza el valor del campo de edad
-        });
+        }
+
+        // Agrega un event listener para el cambio en la fecha de nacimiento
+        fechaInput.addEventListener('change', calcularEdad);
+
+        // Calcula la edad al cargar la página
+        calcularEdad();
     </script>
+
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {

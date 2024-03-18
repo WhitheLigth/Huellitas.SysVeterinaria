@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 // Referencias necesarias para el correcto funcionamiento
 using Huellitas.SysVeterinaria.EN.Employee_EN;
 using Huellitas.SysVeterinaria.EN.Pet_Owner_EN;
+using Huellitas.SysVeterinaria.EN.Services_EN;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -19,6 +20,8 @@ namespace Huellitas.SysVeterinaria.DAL
     {
         #region REFERENCIAS DE LAS TABLAS DE LA BD
         public DbSet<Employee> Employees { get; set; } //Coleccion que hace referencia a la tabla de la base de datos
+
+        public DbSet<Service> Services { get; set; } // Coleccion que hacer referencia a la tabla de la base de datos
 
         public DbSet<PetOwner> PetOwners { get; set; } //Coleccion que hace referencia a la tabla de la base de datos
         #endregion

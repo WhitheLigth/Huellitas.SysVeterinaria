@@ -74,10 +74,10 @@ namespace Huellitas.SysVeterinaria.DAL.Employee___DAL
         public static async Task<int> DeleteAsync(Employee employee)
         {
             int result = 0;
+            // Un bloque de conexion que mientras se permanezca en el bloque la base de datos permanecera abierta y al terminar se destruira
             using (var dbContext = new ContextDB())
             {
                 var employeeDB = await dbContext.Employees.FirstOrDefaultAsync(a => a.Id == employee.Id);
-                // Un bloque de conexion que mientras se permanezca en el bloque la base de datos permanecera abierta y al terminar se destruira
                 if (employeeDB != null)
                 {
                     dbContext.Employees.Remove(employeeDB);

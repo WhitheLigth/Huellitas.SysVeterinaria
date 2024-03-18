@@ -76,25 +76,25 @@ namespace Huellitas.SysVeterinaria.EN.Employee_EN
         [Required(ErrorMessage = "El Numero de Emergencia es requerido")] //Indica que es un campo requerido
         [StringLength(10, ErrorMessage = "Maximo 10 caracteres")] // Indica la longitud maxima para dicho campo
         [Display(Name = "Numero de Emergencia")] // Una tipo traduccion (esto lo vera el cliente) 
-        [RegularExpression("^[0-9]+$", ErrorMessage = "El Numero de Emergencia debe contener solo números")] // Validamos el tipo de dato
+        [RegularExpression("^[0-9-]+$", ErrorMessage = "El Numero de Emergencia debe contener solo números")] // Validamos el tipo de dato
         public string EmergencyNumber { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "El Titulo Academico es requerido")] //Indica que es un campo requerido
         [StringLength(100, ErrorMessage = "Maximo 100 caracteres")] // Indica la longitud maxima para dicho campo
         [Display(Name = "Titulo Academico")] // Una tipo traduccion (esto lo vera el cliente) 
-        [RegularExpression("^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$", ErrorMessage = "El Titulo Academico debe contener solo Letras")] // Validamos el tipo de dato
+        [RegularExpression("^[a-zA-ZáéíóúÁÉÍÓÚñÑ. ]+$", ErrorMessage = "El Titulo Academico debe contener solo Letras")] // Validamos el tipo de dato
         public string AcademicTitle { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "La Experiencia Laboral es requerido")] //Indica que es un campo requerido
         [StringLength(100, ErrorMessage = "Maximo 100 caracteres")] // Indica la longitud maxima para dicho campo
         [Display(Name = "Experiencia Laboral")] // Una tipo traduccion (esto lo vera el cliente) 
-        [RegularExpression("^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$", ErrorMessage = "La Experiencia debe contener solo Letras")] // Validamos el tipo de dato
+        [RegularExpression("^[a-zA-ZáéíóúÁÉÍÓÚñÑ. ]+$", ErrorMessage = "La Experiencia debe contener solo Letras")] // Validamos el tipo de dato
         public string WorkExperience { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "El Area de Especializacion es requerido")] //Indica que es un campo requerido
         [StringLength(100, ErrorMessage = "Maximo 100 caracteres")] // Indica la longitud maxima para dicho campo
         [Display(Name = "Area de Especializacion")] // Una tipo traduccion (esto lo vera el cliente) 
-        [RegularExpression("^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$", ErrorMessage = "El Area de Especializacion debe contener solo Letras")] // Validamos el tipo de dato
+        [RegularExpression("^[a-zA-ZáéíóúÁÉÍÓÚñÑ. ]+$", ErrorMessage = "El Area de Especializacion debe contener solo Letras")] // Validamos el tipo de dato
         public string AreaOfSpecialization { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "El Puesto o Cargo es requerido")] //Indica que es un campo requerido
@@ -105,13 +105,13 @@ namespace Huellitas.SysVeterinaria.EN.Employee_EN
         [Required(ErrorMessage = "Alergias Conocidas es requerido")] //Indica que es un campo requerido
         [StringLength(100, ErrorMessage = "Maximo 100 caracteres")] // Indica la longitud maxima para dicho campo
         [Display(Name = "Alergias Conocidas")] // Una tipo traduccion (esto lo vera el cliente) 
-        [RegularExpression("^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$", ErrorMessage = "Las Alergias Conocidas debe contener solo Letras")] // Validamos el tipo de dato
+        [RegularExpression("^[a-zA-ZáéíóúÁÉÍÓÚñÑ. ]+$", ErrorMessage = "Las Alergias Conocidas debe contener solo Letras")] // Validamos el tipo de dato
         public string KnownAllergies { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "Condiciones Medicas Relevantes es requerido")] //Indica que es un campo requerido
         [StringLength(100, ErrorMessage = "Maximo 100 caracteres")] // Indica la longitud maxima para dicho campo
         [Display(Name = "Condiciones Medicas Relevantes")] // Una tipo traduccion (esto lo vera el cliente) 
-        [RegularExpression("^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$", ErrorMessage = "Condiciones Medicas Relevantes debe contener solo Letras")] // Validamos el tipo de dato
+        [RegularExpression("^[a-zA-ZáéíóúÁÉÍÓÚñÑ.]+$", ErrorMessage = "Condiciones Medicas Relevantes debe contener solo Letras")] // Validamos el tipo de dato
         public string RelevantMedicalConditions { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "La Fecha de Creacion es requerida")] //Indica que es un campo requerido

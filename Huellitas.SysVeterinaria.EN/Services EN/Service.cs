@@ -13,7 +13,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Huellitas.SysVeterinaria.EN.Services_EN
 {
-    public class Services
+    public class Service
     {
         #region ATRIBUTOS DE LA ENTIDAD SERVICES
         [Key]

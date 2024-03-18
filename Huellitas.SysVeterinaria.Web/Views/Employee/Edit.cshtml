@@ -1,17 +1,15 @@
-﻿@model Huellitas.SysVeterinaria.EN.Employee_EN.Employee
+﻿@* Referencia al Modelo a utilizar *@
+@model Huellitas.SysVeterinaria.EN.Employee_EN.Employee
 
 @{
-    ViewData["Title"] = "Edit";
-    Layout = "_Layout";
+    ViewData["Title"] = "Editar Empleado"; // Titulo de la Pestaña
+    Layout = "_Layout"; //Permite la navegacion hacia el layout
 }
 <br />
 <br />
 <br />
-<br />
-
-<h2>Informacion Personal / Informacion Adicional</h2>
+<h2>Modificar Empleado Existente</h2>
 <hr />
-
 <div class="row">
     <div style="display:flex">
         <form asp-action="Edit">
@@ -35,7 +33,7 @@
                                 </div>
                                 <div class="mb-3" style=" width:140px; margin-right:3%">
                                     <label asp-for="Dui" class="form-label"></label>
-                                    <input asp-for="Dui" class="form-control" placeholder="xxxxxxxx-x" />
+                                    <input asp-for="Dui" class="form-control" placeholder="xxxxxxxx-x" id="inputDui" />
                                     <span asp-validation-for="Dui" class="text-danger"></span>
                                 </div>
                                 <div class="mb-3" style="margin-right:3%">
@@ -43,24 +41,32 @@
                                     <input asp-for="BirthDate" class="form-control" />
                                     <span asp-validation-for="BirthDate" class="text-danger"></span>
                                 </div>
-
-
                                 <div class="mb-3" style="width:80px; margin-right:3%">
                                     <label asp-for="Age" class="form-label"></label>
                                     <input asp-for="Age" class="form-control" />
                                     <span asp-validation-for="Age" class="text-danger"></span>
                                 </div>
-
                             </div>
                             <div style="display:flex">
                                 <div class="mb-3" style="margin-right:3%">
                                     <label asp-for="Gender" class="form-label"></label>
-                                    <input asp-for="Gender" type="text" class="form-control" placeholder="Ingresar" />
+                                    <select class="form-select" name="Gender" id="cbxGender">
+                                        <option value="SELECCIONAR">Seleccionar..</option>
+                                        <option value="MASCULINO">Masculino</option>
+                                        <option value="FEMENINO">Femenino</option>
+                                        <option value="OTRO">Otro</option>
+                                    </select>
                                     <span asp-validation-for="Gender" class="text-danger"></span>
                                 </div>
                                 <div class="mb-3" style="margin-right:3%">
                                     <label asp-for="CivilStatus" class="form-label"></label>
-                                    <input asp-for="CivilStatus" type="text" class="form-control" placeholder="Ingresar" />
+                                    <select class="form-select" name="CivilStatus" id="cbxCivilStatus">
+                                        <option value="SELECCIONAR">Seleccionar..</option>
+                                        <option value="SOLTERO/A">Soltero/a</option>
+                                        <option value="CASADO/A">Casado/a</option>
+                                        <option value="DIVORCIADO/A">Divorciado/a</option>
+                                        <option value="VIUDO/A">Viudo/a</option>
+                                    </select>
                                     <span asp-validation-for="CivilStatus" class="text-danger"></span>
                                 </div>
                                 <div class="mb-2" style=" width:600px; margin-right:3% ">
@@ -69,11 +75,10 @@
                                     <span asp-validation-for="Address" class="text-danger"></span>
                                 </div>
                             </div>
-
                             <div style="display:flex">
                                 <div class="mb-3" style=" width:140px; margin-right:3%">
                                     <label asp-for="Phone" class="form-label"></label>
-                                    <input asp-for="Phone" type="text" class="form-control" placeholder="Ingresar" />
+                                    <input asp-for="Phone" type="text" class="form-control" placeholder="Ingresar" id="inputPhone" />
                                     <span asp-validation-for="Phone" class="text-danger"></span>
                                 </div>
                                 <div class="mb-3" style="width:500px; margin-right:3%">
@@ -83,7 +88,7 @@
                                 </div>
                                 <div class="mb-3" style="width:170px; margin-right:3%">
                                     <label asp-for="EmergencyNumber" class="form-label"></label>
-                                    <input asp-for="EmergencyNumber" type="text" class="form-control" placeholder="Ingresar" />
+                                    <input asp-for="EmergencyNumber" type="text" class="form-control" placeholder="Ingresar" id="inputPhoneEmergency"/>
                                     <span asp-validation-for="EmergencyNumber" class="text-danger"></span>
                                 </div>
                             </div>
@@ -91,8 +96,6 @@
                     </div>
                 </div>
             </div>
-
-
             <div class="row">
                 <div class="col-md-16">
                     <div class="card">
@@ -118,11 +121,16 @@
                                 </div>
                                 <div class="mb-3" style="width:300px;margin-right:3%">
                                     <label asp-for="Position" class="form-label"></label>
-                                    <input asp-for="Position" class="form-control" />
+                                    <select class="form-select" name="Position" id="cbxPosition">
+                                        <option value="SELECCIONAR">Seleccionar..</option>
+                                        <option value="VETERINARIO/A">Veterinario/a</option>
+                                        <option value="ENFERMERO/A">Enfermero/a</option>
+                                        <option value="SECRETARIO/A">Secretario/a</option>
+                                        <option value="PERSONAL DE LIMPIEZA">Personal de Limpieza</option>
+                                    </select>
                                     <span asp-validation-for="Position" class="text-danger"></span>
                                 </div>
                             </div>
-
                             <div style="display:flex">
                                 <div class="mb-3" style="width:450px;margin-right:3%">
                                     <label asp-for="KnownAllergies" class="form-label"></label>
@@ -134,17 +142,16 @@
                                     <input asp-for="RelevantMedicalConditions" class="form-control" />
                                     <span asp-validation-for="RelevantMedicalConditions" class="text-danger"></span>
                                 </div>
-
                             </div>
                             <div style="display:flex">
                                 <div class="mb-3" style="margin-right:3%">
                                     <label asp-for="CreationDate" class="form-label"></label>
-                                    <input asp-for="CreationDate" class="form-control" />
+                                    <input asp-for="CreationDate" class="form-control" readonly />
                                     <span asp-validation-for="CreationDate" class="text-danger"></span>
                                 </div>
                                 <div class="mb-3" style="margin-right:3%">
                                     <label asp-for="ModificationDate" class="form-label"></label>
-                                    <input asp-for="ModificationDate" class="form-control" />
+                                    <input asp-for="ModificationDate" class="form-control" id="inputDateModification" readonly />
                                     <span asp-validation-for="ModificationDate" class="text-danger"></span>
                                 </div>
                             </div>
@@ -162,7 +169,103 @@
     </div>
 </div>
 
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        document.getElementById('inputDui').addEventListener('input', function (event) {
+            var inputValue = event.target.value;
+            var formattedValue = formatDui(inputValue);
+            event.target.value = formattedValue;
+        });
+
+        function formatDui(inputValue) {
+            inputValue = inputValue.replace(/\D/g, ''); // Remover todos los caracteres que no sean dígitos
+            var formattedValue = '';
+            for (var i = 0; i < inputValue.length; i++) {
+                if (i == 8) {
+                    formattedValue += '-' + inputValue.charAt(i);
+                } else {
+                    formattedValue += inputValue.charAt(i);
+                }
+            }
+            return formattedValue;
+        }
+    </script>
+    <script>
+        var fechaInput = document.querySelector('input[name="BirthDate"]'); // Obtenemos la referencia al elemento de entrada de fecha y edad
+        var edadInput = document.querySelector('input[name="Age"]');
+
+        // Función para calcular la edad
+        function calcularEdad() {
+            var fechaNacimiento = new Date(fechaInput.value);
+            var fechaActual = new Date();
+
+            var edad = fechaActual.getFullYear() - fechaNacimiento.getFullYear(); // Calcula la edad restando el año de nacimiento del año actual
+
+            // Ajusta la edad si la fecha de nacimiento aún no ha ocurrido este año
+            if (fechaNacimiento.getMonth() > fechaActual.getMonth() ||
+                (fechaNacimiento.getMonth() === fechaActual.getMonth() && fechaNacimiento.getDate() > fechaActual.getDate())) {
+                edad--;
+            }
+            edadInput.value = edad; // Actualiza el valor del campo de edad
+        }
+
+        // Agrega un event listener para el cambio en la fecha de nacimiento
+        fechaInput.addEventListener('change', calcularEdad);
+
+        // Calcula la edad al cargar la página
+        calcularEdad();
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const inputPhone = document.getElementById('inputPhone');
+            const inputPhoneEmergency = document.getElementById('inputPhoneEmergency');
+
+            function formatPhoneNumber(input) {
+                let phoneNumber = input.value.replace(/\D/g, ''); // Elimina cualquier carácter que no sea número
+                if (phoneNumber.length > 4) {
+                    phoneNumber = phoneNumber.slice(0, 4) + '-' + phoneNumber.slice(4, 8); // Formatea el número con un guion después de los primeros 4 dígitos
+                }
+                input.value = phoneNumber;
+            }
+
+            inputPhone.addEventListener('input', function (e) {
+                formatPhoneNumber(e.target);
+            });
+
+            inputPhoneEmergency.addEventListener('input', function (e) {
+                formatPhoneNumber(e.target);
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const inputDateModification = document.getElementById('inputDateModification');
+
+            // Obtener la fecha actual en formato ISO (YYYY-MM-DD)
+            const currentDate = new Date().toISOString().split('T')[0];
+
+            // Asignar la fecha actual al campo de entrada de tipo date
+            inputDateModification.value = currentDate;
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            // Establecer el valor seleccionado para cbxGenero
+            $("#cbxGender").val('@Model.Gender');
+
+            // Establecer el valor seleccionado para cbxEstadoCivil
+            $("#cbxCivilStatus").val('@Model.CivilStatus');
+
+            // Establecer el valor seleccionado para cbxPuestoOCargo
+            $("#cbxPosition").val('@Model.Position');
+        });
+    </script>
 }

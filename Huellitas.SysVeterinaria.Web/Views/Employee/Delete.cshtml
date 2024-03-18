@@ -1,16 +1,19 @@
-﻿@model Huellitas.SysVeterinaria.EN.Employee_EN.Employee
+﻿@* Referencia al Modelo a utilizar *@
+@model Huellitas.SysVeterinaria.EN.Employee_EN.Employee
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Eliminar Empleado"; // Titulo de la Pestaña
 }
 <br />
 <br />
 <br />
+<h2>Eliminar Empleado Existente</h2> <br />
+<h5>Este registro pertenece a: @Html.DisplayFor(model => model.Name) @Html.DisplayFor(model => model.LastName) con Dui: @Html.DisplayFor(model => model.Dui)</h5>
 <br />
-
-<h2>Estas seguro que quieres eliminar el registro de: @Html.DisplayFor(model => model.Name)</h2>
+<div class="alert alert-danger" role="alert">
+    Estas Seguro De Eliminar el Siguiente Registro? Recuerda No Puedes Revertir Los Cambios
+</div>
 <hr />
-
 <div class="container">
     <div class="row">
         <div class="col">
@@ -80,11 +83,9 @@
         </div>
     </div>
 </div>
-
-
 <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+        <input type="submit" value="Eliminar Registro" class="btn btn-danger" /> |
     <a asp-action="Index" class="btn btn-success">Regresar</a>
     </form>
 </div>

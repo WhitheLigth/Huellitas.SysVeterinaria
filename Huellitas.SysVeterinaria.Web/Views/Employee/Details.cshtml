@@ -1,21 +1,19 @@
-﻿@model Huellitas.SysVeterinaria.EN.Employee_EN.Employee
+﻿@* Referencia al Modelo a utilizar *@
+@model Huellitas.SysVeterinaria.EN.Employee_EN.Employee
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalles del Empleado"; // Titulo de la Pestaña
 }
-
 <br />
 <br />
 <br />
-<br />
-
-<h2>Detalles de registro de Personal</h2>
+<h2>Detalles del Empleado</h2>
 <hr />
-
 <div class="container">
     <div class="row">
         <div class="col">
             <h2>Información Personal</h2>
+            <br />
             <dl class="row">
                 <dt class="col-sm-3 form-label">Nombre:</dt>
                 <dd class="col-sm-9">@Html.DisplayFor(model => model.Name)</dd>
@@ -53,6 +51,7 @@
         </div>
         <div class="col">
             <h2>Información Adicional</h2>
+            <br />
             <dl class="row">
                 <dt class="col-sm-3 form-label">Titulo academico:</dt>
                 <dd class="col-sm-9">@Html.DisplayFor(model => model.AcademicTitle)</dd>

@@ -43,7 +43,7 @@ namespace Huellitas.SysVeterinaria.DAL.Employee___DAL
                 {
                     employeeDB.Name = employee.Name;
                     employeeDB.LastName = employee.LastName;
-                    employee.Dui = employee.Dui;
+                    employeeDB.Dui = employee.Dui;
                     employeeDB.BirthDate = employee.BirthDate;
                     employeeDB.Age = employee.Age;
                     employeeDB.Gender = employee.Gender;

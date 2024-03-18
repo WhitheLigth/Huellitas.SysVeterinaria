@@ -10,8 +10,11 @@
     int[] tops = { 10, 20, 50, -1 }; // para que el user eliga cuantos registros quiere mostrar
     int topActual = Convert.ToInt32(ViewBag.Top); //controla cuanto registros ha seleccionado el  usuario
 }
-
+<br />
+<br />
+<br />
 <h1>Mantenimiento Para Servicios</h1>
+<br />
 <div class="row">
     <div class="col-md-12">
         <form asp-action="Index">
@@ -22,7 +25,6 @@
                         <input type="text" class="form-control" name="Name" />
                     </div>
                 </div>
-              
                 <div class="col-md-2">
                     <div class="form-group">
                         <label class="control-label">Top</label>
@@ -70,7 +72,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Description)
             </th>
-            <th></th>
+            <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
@@ -97,23 +99,21 @@
                     @Html.ActionLink("Eliminar", "Delete", new { id = item.Id }, new { @class = "btn btn-outline-danger" })
                 </td>
             </tr>
-                numRegistros++;
-                if (numRegistros == numRegistrosPorPage)
-                {
-                    numPage++;
-                    numRegistros = 0;
-                }
+            numRegistros++;
+            if (numRegistros == numRegistrosPorPage)
+            {
+                numPage++;
+                numRegistros = 0;
+            }
         }
-              @{
-                if (numRegistros == 0)
-                {
-                    numPage--;
-                }
-              }
-        
+        @{
+            if (numRegistros == 0)
+            {
+                numPage--;
+            }
+        }
     </tbody>
 </table>
-
 @if (numPage > 1)
 {
     <div class="row" style="overflow:auto">
@@ -129,4 +129,3 @@
         </div>
     </div>
 }
-

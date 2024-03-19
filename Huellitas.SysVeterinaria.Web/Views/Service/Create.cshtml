@@ -1,14 +1,13 @@
-﻿@* Referencia a ocupar *@
+﻿﻿@* Referencia al Modelo a utilizar *@
 @model Huellitas.SysVeterinaria.EN.Services_EN.Service
 
 @{
-    //-Titulo de la pestaña
-    ViewData["Title"] = "Crear";
+    ViewData["Title"] = "Crear Servicio"; // Titulo de la Pestaña
 }
 <br />
 <br />
 <br />
-<h1>Crear un Servicio</h1>
+<h1>Crear Nuevo Servicio</h1>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -21,9 +20,15 @@
             </div>
             <div class="form-group">
                 <label asp-for="Price" class="control-label"></label>
-                <input asp-for="Price" class="form-control" />
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">$</span>
+                    </div>
+                    <input id="priceInput" asp-for="Price" class="form-control" placeholder="00.00" />
+                </div>
                 <span asp-validation-for="Price" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="DurationTime" class="control-label"></label>
                 <input asp-for="DurationTime" class="form-control" />
@@ -31,7 +36,10 @@
             </div>
             <div class="form-group">
                 <label asp-for="Status" class="control-label"></label>
-                <input asp-for="Status" class="form-control" />
+                <select class="form-select" name="Status">
+                    <option value="ACTIVO">Activo</option>
+                    <option value="INACTIVO">Inactivo</option>
+                </select>
                 <span asp-validation-for="Status" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -51,4 +59,32 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+        document.getElementById('priceInput').addEventListener('input', function (event) {
+            var inputValue = event.target.value;
+            var formattedValue = formatPrice(inputValue);
+            event.target.value = formattedValue;
+        });
+
+        function formatPrice(inputValue) {
+            inputValue = inputValue.replace(/\D/g, ''); // Remover todo excepto números
+            var integerPart = inputValue.slice(0, -2); // Obtener parte entera
+            var decimalPart = inputValue.slice(-2); // Obtener parte decimal (últimos 2 dígitos)
+            var formattedIntegerPart = addThousandSeparator(integerPart); // Agregar separador de miles
+            var formattedValue = formattedIntegerPart + '.' + decimalPart; // Unir parte entera y parte decimal con punto
+            return formattedValue;
+        }
+
+        function addThousandSeparator(integerPart) {
+            var formattedIntegerPart = '';
+            for (var i = integerPart.length - 1, j = 1; i >= 0; i--, j++) {
+                formattedIntegerPart = integerPart[i] + formattedIntegerPart;
+                if (j % 3 === 0 && i !== 0) {
+                    formattedIntegerPart = ',' + formattedIntegerPart;
+                }
+            }
+            return formattedIntegerPart;
+        }
+    </script>
 }

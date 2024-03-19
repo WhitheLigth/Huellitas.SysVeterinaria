@@ -1,9 +1,8 @@
-﻿@* Referencias a ocupar *@
+﻿﻿@* Referencia al Modelo a utilizar *@
 @model Huellitas.SysVeterinaria.EN.Services_EN.Service
 
 @{
-    //-Titulo de la pestaña
-    ViewData["Title"] = "Detalles";
+    ViewData["Title"] = "Detalles del Servicio"; // Titulo de la Pestaña
 }
 <br />
 <br />
@@ -21,9 +20,12 @@
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Price)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Price)
-        </dd>
+        <dt class="col-sm-10">
+            @{
+                var formattedPrice = string.Format("{0:#,0.00}", Model.Price);
+            }
+            $ @formattedPrice
+        </dt>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.DurationTime)
         </dt>

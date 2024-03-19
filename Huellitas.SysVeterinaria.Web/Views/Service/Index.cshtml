@@ -3,7 +3,7 @@
 
 @{
     //-Titulo de la pestaña
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Servicios";
     int numPage = 1; // Paginacion
     int numRegistros = 0; // reset de la paginacion
     int numRegistrosPorPage = 10; //Dato a mostrar en la paginacion
@@ -54,6 +54,7 @@
     </div>
 </div>
 <br />
+<h2>Tabla de Resultados</h2>
 <table class="table table-responsive table-striped paginationjs">
     <thead>
         <tr>
@@ -69,9 +70,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.Status)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
             <th>Acciones</th>
         </tr>
     </thead>
@@ -82,16 +80,16 @@
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Price)
+                    @{
+                        var formattedPrice = string.Format("{0:#,0.00}", item.Price);
+                    }
+                    $ @formattedPrice
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.DurationTime)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Status)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
                 </td>
                 <td>
                     @Html.ActionLink("Modificar", "Edit", new { id = item.Id }, new { @class = "btn btn-outline-info" }) |

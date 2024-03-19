@@ -7,16 +7,21 @@ using System.Threading.Tasks;
 // Referencias necesarias para el correcto funcionamiento
 using Huellitas.SysVeterinaria.EN.Pet_Owner_EN;
 using Microsoft.EntityFrameworkCore;
+
+
+
 #endregion
 
 namespace Huellitas.SysVeterinaria.DAL.Pet_Owner___DAL
 {
     public class PetOwnerDAL
     {
-        #region METODO CREAR 
+        #region METODO PARA CREAR 
+        // Metodo para guardar un nuevo registro en la base de datos
         public static async Task<int> CreateAsync(PetOwner petOwner)
         {
             int result = 0;
+            // Un bloque de conexion que mientras se permanezca en el bloque la base de datos permanecera abierta y al terminar se destruira
             using (var dbContext = new ContextDB())
             {
                 dbContext.Add(petOwner);
@@ -61,10 +66,10 @@ namespace Huellitas.SysVeterinaria.DAL.Pet_Owner___DAL
         public static async Task<int> DeleteAsync(PetOwner petOwner)
         {
             int result = 0;
+            // Un bloque de conexion que mientras se permanezca en el bloque la base de datos permanecera abierta y al terminar se destruira
             using (var dbContext = new ContextDB())
             {
                 var petOwnerDB = await dbContext.PetOwners.FirstOrDefaultAsync(a => a.Id == petOwner.Id);
-                // Un bloque de conexion que mientras se permanezca en el bloque la base de datos permanecera abierta y al terminar se destruira
                 if (petOwnerDB != null)
                 {
                     dbContext.PetOwners.Remove(petOwnerDB);
@@ -116,6 +121,10 @@ namespace Huellitas.SysVeterinaria.DAL.Pet_Owner___DAL
             if (!string.IsNullOrWhiteSpace(petOwner.Name))
                 query = query.Where(c => c.Name.Contains(petOwner.Name));
 
+            // Por Apellido, Si es verdadero lo vuelve falso y viceversa 
+            if (!string.IsNullOrWhiteSpace(petOwner.LastName))
+                query = query.Where(c => c.LastName.Contains(petOwner.LastName));
+
             // Se agrego por si se llega a utilizar
             if (!string.IsNullOrWhiteSpace(petOwner.Dui))
                 query = query.Where(c => c.Dui.Contains(petOwner.Dui));
@@ -135,6 +144,7 @@ namespace Huellitas.SysVeterinaria.DAL.Pet_Owner___DAL
         public static async Task<List<PetOwner>> SearchAsync(PetOwner petOwner)
         {
             var petOwners = new List<PetOwner>();
+            // Un bloque de conexion que mientras se permanezca en el bloque la base de datos permanecera abierta y al terminar se destruira
             using (var dbContext = new ContextDB())
             {
                 var select = dbContext.PetOwners.AsQueryable();

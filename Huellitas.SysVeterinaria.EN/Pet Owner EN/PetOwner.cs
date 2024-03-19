@@ -71,7 +71,7 @@ namespace Huellitas.SysVeterinaria.EN.Pet_Owner_EN
         [Required(ErrorMessage = "El Numero de Emergencia es requerido")] //Indica que es un campo requerido
         [StringLength(9, ErrorMessage = "Maximo 9 caracteres")] // Indica la longitud maxima para dicho campo
         [Display(Name = "Numero de Emergencia")] // Una tipo traduccion (esto lo vera el cliente) 
-        [RegularExpression("^[0-9]+$", ErrorMessage = "El Numero de Emergencia debe contener solo números")] // Validamos el tipo de dato
+        [RegularExpression("^[0-9-]+$", ErrorMessage = "El Numero de Emergencia debe contener solo números")] // Validamos el tipo de dato
         public string EmergencyNumber { get; set; } = string.Empty;
 
         #endregion

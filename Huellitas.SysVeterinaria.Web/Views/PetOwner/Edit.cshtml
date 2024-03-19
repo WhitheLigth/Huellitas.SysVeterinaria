@@ -1,0 +1,162 @@
+﻿@* Referencia al Modelo a utilizar *@
+@model Huellitas.SysVeterinaria.EN.Pet_Owner_EN.PetOwner
+
+@{
+    ViewData["Title"] = "Editar Dueño de Mascota"; // Titulo de la Pestaña
+}
+<br />
+<br />
+<br />
+<h2>Modificar Dueño Existente</h2>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Dui" class="control-label"></label>
+                <input asp-for="Dui" class="form-control" id="inputDui" />
+                <span asp-validation-for="Dui" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BirthDate" class="control-label"></label>
+                <input asp-for="BirthDate" type="date" class="form-control" />
+                <span asp-validation-for="BirthDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Age" class="control-label"></label>
+                <input asp-for="Age" class="form-control" />
+                <span asp-validation-for="Age" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Gender" class="control-label"></label>
+                <select class="form-select" name="Gender" id="cbxGender">
+                    <option value="SELECCIONAR">Seleccionar..</option>
+                    <option value="MASCULINO">Masculino</option>
+                    <option value="FEMENINO">Femenino</option>
+                    <option value="OTRO">Otro</option>
+                </select>
+                <span asp-validation-for="Gender" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address" class="control-label"></label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Phone" class="control-label"></label>
+                <input asp-for="Phone" class="form-control" id="inputPhone" />
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" type="email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmergencyNumber" class="control-label"></label>
+                <input asp-for="EmergencyNumber" class="form-control" id="inputPhoneEmergency" />
+                <span asp-validation-for="EmergencyNumber" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group mb-3" style="margin-right:3%">
+                <input type="submit" value="Editar Dueño" class="btn btn-info" style="margin-right:3%; width:200px" />
+                <a asp-action="Index">Regresar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+        document.getElementById('inputDui').addEventListener('input', function (event) {
+            var inputValue = event.target.value;
+            var formattedValue = formatDui(inputValue);
+            event.target.value = formattedValue;
+        });
+
+        function formatDui(inputValue) {
+            inputValue = inputValue.replace(/\D/g, ''); // Remover todos los caracteres que no sean dígitos
+            var formattedValue = '';
+            for (var i = 0; i < inputValue.length; i++) {
+                if (i == 8) {
+                    formattedValue += '-' + inputValue.charAt(i);
+                } else {
+                    formattedValue += inputValue.charAt(i);
+                }
+            }
+            return formattedValue;
+        }
+    </script>
+
+    <script>
+        var fechaInput = document.querySelector('input[name="BirthDate"]'); // Obtenemos la referencia al elemento de entrada de fecha y edad
+        var edadInput = document.querySelector('input[name="Age"]');
+
+        // Función para calcular la edad
+        function calcularEdad() {
+            var fechaNacimiento = new Date(fechaInput.value);
+            var fechaActual = new Date();
+
+            var edad = fechaActual.getFullYear() - fechaNacimiento.getFullYear(); // Calcula la edad restando el año de nacimiento del año actual
+
+            // Ajusta la edad si la fecha de nacimiento aún no ha ocurrido este año
+            if (fechaNacimiento.getMonth() > fechaActual.getMonth() ||
+                (fechaNacimiento.getMonth() === fechaActual.getMonth() && fechaNacimiento.getDate() > fechaActual.getDate())) {
+                edad--;
+            }
+            edadInput.value = edad; // Actualiza el valor del campo de edad
+        }
+
+        // Agrega un event listener para el cambio en la fecha de nacimiento
+        fechaInput.addEventListener('change', calcularEdad);
+
+        // Calcula la edad al cargar la página
+        calcularEdad();
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const inputPhone = document.getElementById('inputPhone');
+            const inputPhoneEmergency = document.getElementById('inputPhoneEmergency');
+
+            function formatPhoneNumber(input) {
+                let phoneNumber = input.value.replace(/\D/g, ''); // Elimina cualquier carácter que no sea número
+                if (phoneNumber.length > 4) {
+                    phoneNumber = phoneNumber.slice(0, 4) + '-' + phoneNumber.slice(4, 8); // Formatea el número con un guion después de los primeros 4 dígitos
+                }
+                input.value = phoneNumber;
+            }
+
+            inputPhone.addEventListener('input', function (e) {
+                formatPhoneNumber(e.target);
+            });
+
+            inputPhoneEmergency.addEventListener('input', function (e) {
+                formatPhoneNumber(e.target);
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            // Establecer el valor seleccionado para cbxGenero
+            $("#cbxGender").val('@Model.Gender');
+        });
+    </script>
+}

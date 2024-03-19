@@ -12,7 +12,7 @@ namespace Huellitas.SysVeterinaria.Web.Controllers.PetOwner___Controller
 {
     public class PetOwnerController : Controller
     {
-
+        // Creamos la instnacia para acceder a los metodos
         PetOwnerBL petOwnerBL = new PetOwnerBL();
 
         #region METODO PARA MOSTRAR INDEX

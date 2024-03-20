@@ -30,7 +30,7 @@ namespace Huellitas.SysVeterinaria.DAL
 
         public DbSet<Breed> Breeds { get; set; } //Coleccion que hace referencia a la tabla de la base de datos
 
-        public DbSet<Rol> Roles { get; set; } //Coleccion que hace referencia a la tabla de la base de datos
+        public DbSet<Role> Roles { get; set; } //Coleccion que hace referencia a la tabla de la base de datos
 
         #endregion
 

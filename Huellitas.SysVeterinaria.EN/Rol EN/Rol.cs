@@ -14,7 +14,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Huellitas.SysVeterinaria.EN.Rol_EN
 {
-    public class RolEN
+    public class Rol
     {
         #region ATRIBUTOS DE LA ENTIDAD
         [Key]

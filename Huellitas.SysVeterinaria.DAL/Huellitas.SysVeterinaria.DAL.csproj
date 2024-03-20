@@ -15,8 +15,4 @@
     <ProjectReference Include="..\Huellitas.SysVeterinaria.EN\Huellitas.SysVeterinaria.EN.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Rol - DAL\" />
-  </ItemGroup>
-
 </Project>

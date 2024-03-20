@@ -9,6 +9,7 @@ using Huellitas.SysVeterinaria.EN.Breed_EN;
 // Referencias necesarias para el correcto funcionamiento
 using Huellitas.SysVeterinaria.EN.Employee_EN;
 using Huellitas.SysVeterinaria.EN.Pet_Owner_EN;
+using Huellitas.SysVeterinaria.EN.Rol_EN;
 using Huellitas.SysVeterinaria.EN.Services_EN;
 using Microsoft.EntityFrameworkCore;
 
@@ -28,6 +29,8 @@ namespace Huellitas.SysVeterinaria.DAL
         public DbSet<PetOwner> PetOwners { get; set; } //Coleccion que hace referencia a la tabla de la base de datos
 
         public DbSet<Breed> Breeds { get; set; } //Coleccion que hace referencia a la tabla de la base de datos
+
+        public DbSet<Rol> Roles { get; set; } //Coleccion que hace referencia a la tabla de la base de datos
 
         #endregion
 

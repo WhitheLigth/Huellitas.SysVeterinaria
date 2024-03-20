@@ -4,10 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 // Referencia necesarias para el correcto funcionamiento
 using Huellitas.SysVeterinaria.EN.Breed_EN;
 using Huellitas.SysVeterinaria.DAL.Breed___DAL;
+
+
+
 #endregion
 
 namespace Huellitas.SysVeterinaria.BL.Breed___BL

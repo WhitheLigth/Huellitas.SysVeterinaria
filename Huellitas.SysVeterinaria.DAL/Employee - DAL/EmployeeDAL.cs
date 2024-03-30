@@ -98,7 +98,7 @@ namespace Huellitas.SysVeterinaria.DAL.Employee___DAL
             {
                 employeeDB = await dbContext.Employees.FirstOrDefaultAsync(c => c.Id == employee.Id);
             }
-            return employeeDB;
+            return employeeDB!;
         }
         #endregion
 

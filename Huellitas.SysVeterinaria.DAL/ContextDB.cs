@@ -37,7 +37,7 @@ namespace Huellitas.SysVeterinaria.DAL
         // Metodo de Conexion a la Base de Datos
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@""); //Poner str de concexion local
+            optionsBuilder.UseSqlServer(@"Data Source=localhost;Initial Catalog=SysHuellitaVeterinariaDB;Integrated Security=True;Encrypt=True;Trust Server Certificate=True"); //Poner str de concexion local
         }
     }
 }

@@ -63,7 +63,7 @@ namespace Huellitas.SysVeterinaria.EN.Employee_EN
         public string Address { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "El Telefono es requerido")] //Indica que es un campo requerido
-        [StringLength(10, ErrorMessage = "Maximo 10 caracteres")] // Indica la longitud maxima para dicho campo
+        [StringLength(9, ErrorMessage = "Maximo 10 caracteres")] // Indica la longitud maxima para dicho campo
         [Display(Name = "Telefono")] // Una tipo traduccion (esto lo vera el cliente) 
         [RegularExpression("^[0-9-]+$", ErrorMessage = "El Telefono debe contener solo números")] // Validamos el tipo de dato
         public string Phone { get; set; } = string.Empty;
@@ -74,7 +74,7 @@ namespace Huellitas.SysVeterinaria.EN.Employee_EN
         public string Email { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "El Numero de Emergencia es requerido")] //Indica que es un campo requerido
-        [StringLength(10, ErrorMessage = "Maximo 10 caracteres")] // Indica la longitud maxima para dicho campo
+        [StringLength(9, ErrorMessage = "Maximo 10 caracteres")] // Indica la longitud maxima para dicho campo
         [Display(Name = "Numero de Emergencia")] // Una tipo traduccion (esto lo vera el cliente) 
         [RegularExpression("^[0-9-]+$", ErrorMessage = "El Numero de Emergencia debe contener solo números")] // Validamos el tipo de dato
         public string EmergencyNumber { get; set; } = string.Empty;

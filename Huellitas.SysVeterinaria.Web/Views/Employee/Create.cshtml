@@ -4,7 +4,6 @@
 @{
     // Titulo de la Pestaña
     ViewData["Title"] = "Crear Empleado";
-    Layout = "_Layout"; //Permite la navegacion hacia el layout
 }
 <br />
 <br />
@@ -43,7 +42,7 @@
                                 </div>
                                 <div class="mb-3" style="width:80px; margin-right:3%">
                                     <label asp-for="Age" class="form-label"></label>
-                                    <input asp-for="Age" class="form-control" />
+                                    <input asp-for="Age" class="form-control" readonly />
                                     <span asp-validation-for="Age" class="text-danger"></span>
                                 </div>
                             </div>
@@ -143,18 +142,6 @@
                                     <span asp-validation-for="RelevantMedicalConditions" class="text-danger"></span>
                                 </div>
                             </div>
-                            <div style="display:flex">
-                                <div class="mb-3" style="margin-right:3%">
-                                    <label asp-for="CreationDate" class="form-label"></label>
-                                    <input asp-for="CreationDate" class="form-control" id="inputDateCreate" readonly />
-                                    <span asp-validation-for="CreationDate" class="text-danger"></span>
-                                </div>
-                                <div class="mb-3" style="margin-right:3%">
-                                    <label asp-for="ModificationDate" class="form-label"></label>
-                                    <input asp-for="ModificationDate" class="form-control" id="inputDateModification" readonly />
-                                    <span asp-validation-for="ModificationDate" class="text-danger"></span>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -192,36 +179,39 @@
             }
             return formattedValue;
         }
-    </script>
 
-    <script>
-        var fechaInput = document.querySelector('input[name="BirthDate"]'); // Obtenemos la referencia al elemento de entrada de fecha y edad
-        var edadInput = document.querySelector('input[name="Age"]');
+        document.addEventListener("DOMContentLoaded", function () {
+            const birthDateInput = document.querySelector('input[name="BirthDate"]');
+            const ageInput = document.querySelector('input[name="Age"]');
 
-        // Función para calcular la edad
-        function calcularEdad() {
-            var fechaNacimiento = new Date(fechaInput.value);
-            var fechaActual = new Date();
+            // Function to calculate age
+            function calculateAge() {
+                const birthDateValue = birthDateInput.value.trim();
+                if (birthDateValue !== "") {
+                    const birthDate = new Date(birthDateValue);
+                    const currentDate = new Date();
 
-            var edad = fechaActual.getFullYear() - fechaNacimiento.getFullYear(); // Calcula la edad restando el año de nacimiento del año actual
+                    let age = currentDate.getFullYear() - birthDate.getFullYear(); // Calculate age by subtracting birth year from current year
 
-            // Ajusta la edad si la fecha de nacimiento aún no ha ocurrido este año
-            if (fechaNacimiento.getMonth() > fechaActual.getMonth() ||
-                (fechaNacimiento.getMonth() === fechaActual.getMonth() && fechaNacimiento.getDate() > fechaActual.getDate())) {
-                edad--;
+                    // Adjust age if the birth date hasn't occurred yet this year
+                    if (birthDate.getMonth() > currentDate.getMonth() ||
+                        (birthDate.getMonth() === currentDate.getMonth() && birthDate.getDate() > currentDate.getDate())) {
+                        age--;
+                    }
+
+                    ageInput.value = age; // Update the age field
+                } else {
+                    ageInput.value = ""; // Clear the age field if no birth date is provided
+                }
             }
-            edadInput.value = edad; // Actualiza el valor del campo de edad
-        }
 
-        // Agrega un event listener para el cambio en la fecha de nacimiento
-        fechaInput.addEventListener('change', calcularEdad);
+            // Add event listener for change in birth date
+            birthDateInput.addEventListener('change', calculateAge);
 
-        // Calcula la edad al cargar la página
-        calcularEdad();
-    </script>
+            // Calculate age when the page loads
+            calculateAge();
+        });
 
-
-    <script>
         document.addEventListener("DOMContentLoaded", function () {
             const inputPhone = document.getElementById('inputPhone');
             const inputPhoneEmergency = document.getElementById('inputPhoneEmergency');
@@ -241,20 +231,6 @@
             inputPhoneEmergency.addEventListener('input', function (e) {
                 formatPhoneNumber(e.target);
             });
-        });
-    </script>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const inputDateCreate = document.getElementById('inputDateCreate');
-            const inputDateModification = document.getElementById('inputDateModification');
-
-            // Obtener la fecha actual en formato ISO (YYYY-MM-DD)
-            const currentDate = new Date().toISOString().split('T')[0];
-
-            // Asignar la fecha actual al campo de entrada de tipo date
-            inputDateCreate.value = currentDate;
-            inputDateModification.value = currentDate;
         });
     </script>
 }

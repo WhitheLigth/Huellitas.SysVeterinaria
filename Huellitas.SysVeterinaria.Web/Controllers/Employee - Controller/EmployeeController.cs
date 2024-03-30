@@ -17,7 +17,7 @@ namespace Huellitas.SysVeterinaria.Web.Controllers.Employee___Controller
 
         #region METODO PARA MOSTRAR INDEX
         // Accion Para Mostrar La Vista Index
-        public async Task<IActionResult> Index(Employee employee = null)
+        public async Task<IActionResult> Index(Employee employee = null!)
         {
             if (employee == null)
                 employee = new Employee();

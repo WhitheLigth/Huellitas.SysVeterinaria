@@ -22,7 +22,7 @@ Position VARCHAR (100) NOT NULL,
 KnownAllergies VARCHAR(100) NOT NULL,
 RelevantMedicalConditions VARCHAR (100) NOT NULL,
 CreationDate DATETIME NOT NULL,
-ModificationDate DATETIME DEFAULT NULL,
+ModificationDate DATETIME NOT NULL
 );
 GO
 CREATE TABLE [Services](

@@ -56,6 +56,8 @@ namespace Huellitas.SysVeterinaria.Web.Controllers.Employee___Controller
         {
             try
             {
+                employee.CreationDate = DateTime.Now;
+                employee.ModificationDate = DateTime.Now;
                 int result = await employeeBL.CreateAsync(employee);
                 return RedirectToAction(nameof(Index));
             }
@@ -83,6 +85,7 @@ namespace Huellitas.SysVeterinaria.Web.Controllers.Employee___Controller
         {
             try
             {
+                employee.ModificationDate = DateTime.Now;
                 int result = await employeeBL.UpdateAsync(employee);
                 return RedirectToAction(nameof(Index));
             }

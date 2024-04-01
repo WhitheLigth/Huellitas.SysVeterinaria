@@ -60,6 +60,7 @@ namespace Huellitas.SysVeterinaria.Web.Controllers.Position___Controller
             try
             {
                 int result = await positionBL.CreateAsync(position);
+                TempData["SuccessMessageCreate"] = "Puesto o Cargo Agregado Exitosamente";
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
@@ -87,6 +88,7 @@ namespace Huellitas.SysVeterinaria.Web.Controllers.Position___Controller
             try
             {
                 int result = await positionBL.UpdateAsync(position);
+                TempData["SuccessMessageUpdate"] = "Puesto o Cargo Modificado Exitosamente";
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)

@@ -98,7 +98,7 @@ namespace Huellitas.SysVeterinaria.Web.Controllers.Service___Controller
         #endregion
 
         #region METODO PARA ELIMINAR
-        // Accion Que Muestra La Vista De Modificar
+        // Accion Que Muestra La Vista De Eliminar
         public async Task<IActionResult> Delete(int id)
         {
             var service = await servicesBL.GetByIdAsync(new Service { Id = id });

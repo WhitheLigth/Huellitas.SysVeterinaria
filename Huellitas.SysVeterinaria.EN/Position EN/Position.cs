@@ -23,7 +23,7 @@ namespace Huellitas.SysVeterinaria.EN.Position_EN
         [Required(ErrorMessage = "El nombre es requerido")] //Indica que es un campo requerido
         [StringLength(50, ErrorMessage = "Maximo 50 caracteres")] // Indica la longitud maxima para dicho campo
         [Display(Name = "Nombre")] // Una tipo traduccion (esto lo vera el cliente) 
-        [RegularExpression("^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$", ErrorMessage = "El Nombre debe contener solo Letras")] // Validamos el tipo de dato
+        [RegularExpression("^[a-zA-ZáéíóúÁÉÍÓÚñÑ/ ]+$", ErrorMessage = "El Nombre debe contener solo Letras")] // Validamos el tipo de dato
         public string Name { get; set; } = string.Empty;
         #endregion
 

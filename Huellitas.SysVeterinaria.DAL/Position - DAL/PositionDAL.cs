@@ -24,8 +24,14 @@ namespace Huellitas.SysVeterinaria.DAL.Position___DAL
             // Un bloque de conexion que mientras se permanezca en el bloque la base de datos permanecera abierta y al terminar se destruira
             using(var dbContext = new ContextDB())
             {
-                dbContext.Add(position);
-                result = await dbContext.SaveChangesAsync();
+                bool positionExists = await ExistPosition(position, dbContext);
+                if (positionExists == false)
+                {
+                    dbContext.Add(position);
+                    result = await dbContext.SaveChangesAsync();
+                }
+                else
+                    throw new Exception("Puesto o Cargo Ya Existente, Vuelve a Intentarlo");
             }
             return result; // Si se realizo con exito devuleve 1 si no devuelve 0
         }
@@ -42,10 +48,16 @@ namespace Huellitas.SysVeterinaria.DAL.Position___DAL
                 var positionDB = await dbContext.Positions.FirstOrDefaultAsync(p => p.Id == position.Id);
                 if (positionDB != null) 
                 {
-                    positionDB.Name = position.Name;
+                    bool positionExists = await ExistPosition(position, dbContext);
+                    if (positionExists == false)
+                    {
+                        positionDB.Name = position.Name;
 
-                    dbContext.Update(positionDB);
-                    result = await dbContext.SaveChangesAsync();
+                        dbContext.Update(positionDB);
+                        result = await dbContext.SaveChangesAsync();
+                    }
+                    else
+                        throw new Exception("Puesto o Cargo Ya Existente, Vuelve a Intentarlo");
                 }
             }
             return result; // Si se realizo con exito devuelve 1 sino devuelve 0
@@ -135,6 +147,19 @@ namespace Huellitas.SysVeterinaria.DAL.Position___DAL
                 positions = await select.ToListAsync();
             }
             return positions;
+        }
+        #endregion
+
+        #region METODO PARA VALIDAR UNICA EXISTENCIA DEL REGISTRRO
+        // Metodo Para Validar La Unica Existencia De Un Registro y No Haber Duplicidads
+        private static async Task<bool> ExistPosition(Position position, ContextDB dbContext)
+        {
+            bool result = false;
+            var positions = await dbContext.Positions.FirstOrDefaultAsync(p => p.Name == position.Name && p.Id != position.Id);
+            if (positions != null && positions.Id > 0 && positions.Name == position.Name)
+                result = true;
+
+            return result;
         }
         #endregion
     }

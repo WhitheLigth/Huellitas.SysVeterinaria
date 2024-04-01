@@ -3,6 +3,10 @@ using Microsoft.AspNetCore.Http;
 // Referencias necesarias para el correcto funcionamiento
 using Microsoft.AspNetCore.Mvc;
 using Huellitas.SysVeterinaria.BL.Position___BL;
+using Huellitas.SysVeterinaria.BL.Services___BL;
+using Huellitas.SysVeterinaria.EN.Services_EN;
+using Huellitas.SysVeterinaria.EN.Position_EN;
+using Huellitas.SysVeterinaria.DAL.Services___DAL;
 
 
 #endregion
@@ -16,17 +20,27 @@ namespace Huellitas.SysVeterinaria.Web.Controllers.Position___Controller
 
         #region METODO PARA MOSTRAR INDEX
         // Accion para mostrar la vista index
-        public ActionResult Index()
+        public async Task<IActionResult> Index(Position position)
         {
-            return View();
+            if (position == null)
+                position = new Position();
+            if (position.Top_Aux == 0)
+                position.Top_Aux = 10;
+            else if (position.Top_Aux == -1)
+                position.Top_Aux = 0;
+
+            var employees = await positionBL.SearchAsync(position);
+            ViewBag.Top = position.Top_Aux;
+            return View(employees);
         }
         #endregion
 
         #region METODO PARA MOSTRAR DETALLES
         // Accion que muestra el detalle de un registro
-        public ActionResult Details(int id)
+        public async Task<IActionResult> Details(int id)
         {
-            return View();
+            var position = await positionBL.GetByIdAsync(new Position { Id = id });
+            return View(position);
         }
         #endregion
 
@@ -34,20 +48,23 @@ namespace Huellitas.SysVeterinaria.Web.Controllers.Position___Controller
         // Accion para mostrar la vista de crear
         public ActionResult Create()
         {
+            ViewBag.Error = "";
             return View();
         }
 
-        // Accion que recibe los datos del formulario para ser enviados a la BD
+        // Accion Que Recibe Los Datos Del Formulario Para Ser Enviados a la BD
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<IActionResult> Create(Position position)
         {
             try
             {
+                int result = await positionBL.CreateAsync(position);
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception ex)
             {
+                ViewBag.Error = ex.Message;
                 return View();
             }
         }
@@ -55,22 +72,26 @@ namespace Huellitas.SysVeterinaria.Web.Controllers.Position___Controller
 
         #region METODO PARA MODIFICAR
         // Accion que muestra la vista de modificar
-        public ActionResult Edit(int id)
+        public async Task<IActionResult> Edit(int id)
         {
-            return View();
+            var position = await positionBL.GetByIdAsync(new Position { Id = id });
+            ViewBag.Error = "";
+            return View(position);
         }
 
-        // Accion que recibe los datos del formulario para ser enviados a la BD
+        //Accion Que Recibe Los Datos Del Formulario Para Ser Enviados a la BD
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<IActionResult> Edit(int id, Position position)
         {
             try
             {
+                int result = await positionBL.UpdateAsync(position);
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception ex)
             {
+                ViewBag.Erro = ex.Message;
                 return View();
             }
         }
@@ -78,22 +99,26 @@ namespace Huellitas.SysVeterinaria.Web.Controllers.Position___Controller
 
         #region METODO PARA ELIMINAR
         // Accion que muestra la vista de eliminar
-        public ActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            return View();
+            var position = await positionBL.GetByIdAsync(new Position { Id = id });
+            ViewBag.Error = "";
+            return View(position);
         }
 
-        // Accion que recibe los datos del formulario para ser enviados a la BD
+        // Accion Que Recibe Los Datos Del Formulario Para Ser Enviados a la BD
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<IActionResult> Delete(int id, Position position)
         {
             try
             {
+                int result = await positionBL.DeleteAsync(position);
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception ex)
             {
+                ViewBag.Error = ex.Message;
                 return View();
             }
         }

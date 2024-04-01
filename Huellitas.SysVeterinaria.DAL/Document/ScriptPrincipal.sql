@@ -2,7 +2,7 @@ CREATE DATABASE SysHuellitaVeterinariaDB;
 GO
 USE SysHuellitaVeterinariaDB;
 GO
-CREATE TABLE Position(
+CREATE TABLE Positions(
 Id INT NOT NULL PRIMARY KEY IDENTITY(1,1),
 [Name] VARCHAR(50) NOT NULL
 );

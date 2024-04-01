@@ -10,12 +10,15 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit">
+        <form id="Form" asp-action="Edit" onsubmit="CreateRecord(event)">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
+                <span class="alert-danger" role="alert">
+                    @ViewBag.Error
+                </span>
             </div>
             <br />
             <div class="form-group">
@@ -28,4 +31,31 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+        function CreateRecord(e) {
+            e.preventDefault();
+
+            const form = document.getElementById('Form');
+            const inputs = document.querySelectorAll('.form-input');
+
+            inputs.forEach(function (input) {
+                if (!input.value.trim()) {
+                    // Si el campo está vacío, no hacemos nada
+                    return;
+                }
+            });
+
+            Swal.fire({
+                title: '¿Guardar Nuevo Registro?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Si, Guardar Registro'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
+        }
+    </script>
 }

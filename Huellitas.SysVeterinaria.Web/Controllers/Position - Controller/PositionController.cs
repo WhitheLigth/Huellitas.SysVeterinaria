@@ -20,7 +20,7 @@ namespace Huellitas.SysVeterinaria.Web.Controllers.Position___Controller
 
         #region METODO PARA MOSTRAR INDEX
         // Accion para mostrar la vista index
-        public async Task<IActionResult> Index(Position position)
+        public async Task<IActionResult> Index(Position position = null!)
         {
             if (position == null)
                 position = new Position();
@@ -29,9 +29,9 @@ namespace Huellitas.SysVeterinaria.Web.Controllers.Position___Controller
             else if (position.Top_Aux == -1)
                 position.Top_Aux = 0;
 
-            var employees = await positionBL.SearchAsync(position);
+            var positions = await positionBL.SearchAsync(position);
             ViewBag.Top = position.Top_Aux;
-            return View(employees);
+            return View(positions);
         }
         #endregion
 
@@ -94,7 +94,7 @@ namespace Huellitas.SysVeterinaria.Web.Controllers.Position___Controller
             catch (Exception ex)
             {
                 ViewBag.Erro = ex.Message;
-                return View();
+                return View(position);
             }
         }
         #endregion
@@ -116,12 +116,13 @@ namespace Huellitas.SysVeterinaria.Web.Controllers.Position___Controller
             try
             {
                 int result = await positionBL.DeleteAsync(position);
+                TempData["SuccessMessageDelete"] = "Puesto o Cargo Eliminado Exitosamente";
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
             {
                 ViewBag.Error = ex.Message;
-                return View();
+                return View(position);
             }
         }
         #endregion

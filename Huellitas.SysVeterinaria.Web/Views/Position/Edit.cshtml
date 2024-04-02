@@ -7,18 +7,17 @@
 <br />
 <br />
 <h1>Modificar Puesto o Cargo Existente</h1>
+<span style="color:red">@ViewBag.Error</span>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form id="Form" asp-action="Edit" onsubmit="CreateRecord(event)">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
-                <span class="alert-danger" role="alert">
-                    @ViewBag.Error
-                </span>
             </div>
             <br />
             <div class="form-group">
@@ -47,10 +46,10 @@
             });
 
             Swal.fire({
-                title: '¿Guardar Nuevo Registro?',
+                title: '¿Seguro de Modificar Este Registro?',
                 icon: 'question',
                 showCancelButton: true,
-                confirmButtonText: 'Si, Guardar Registro'
+                confirmButtonText: 'Si, Modificar Registro'
             }).then((result) => {
                 if (result.isConfirmed) {
                     form.submit();

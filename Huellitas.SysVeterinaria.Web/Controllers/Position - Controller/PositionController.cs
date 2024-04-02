@@ -93,7 +93,7 @@ namespace Huellitas.SysVeterinaria.Web.Controllers.Position___Controller
             }
             catch (Exception ex)
             {
-                ViewBag.Erro = ex.Message;
+                ViewBag.Error = ex.Message;
                 return View(position);
             }
         }

@@ -55,7 +55,7 @@ namespace Huellitas.SysVeterinaria.DAL.Employee___DAL
                     employeeDB.AcademicTitle = employee.AcademicTitle;
                     employeeDB.WorkExperience = employee.WorkExperience;
                     employeeDB.AreaOfSpecialization = employee.AreaOfSpecialization;
-                    employeeDB.Position = employee.Position;
+                    employeeDB.IdPosition = employee.IdPosition;
                     employeeDB.KnownAllergies = employee.KnownAllergies;
                     employeeDB.RelevantMedicalConditions = employee.RelevantMedicalConditions;
                     employeeDB.CreationDate = employee.CreationDate;
@@ -152,6 +152,21 @@ namespace Huellitas.SysVeterinaria.DAL.Employee___DAL
             {
                 var select = dbContext.Employees.AsQueryable();
                 select = QuerySelect(select, employee);
+                employees = await select.ToListAsync();
+            }
+            return employees;
+        }
+        #endregion
+
+        #region METODO PARA INCLUIR A PUESTO O CARGO
+        // Metodo para incluir el puesto o cargo para la busqueda
+        public static async Task<List<Employee>> SearchIncludePositionAsync(Employee employee)
+        {
+            var employees = new List<Employee>();
+            using(var dbContext = new ContextDB())
+            {
+                var select = dbContext.Employees.AsQueryable();
+                select = QuerySelect(select, employee).Include(e => e.Position).AsQueryable();
                 employees = await select.ToListAsync();
             }
             return employees;

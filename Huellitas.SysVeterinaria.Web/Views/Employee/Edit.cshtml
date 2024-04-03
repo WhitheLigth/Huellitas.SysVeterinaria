@@ -1,9 +1,11 @@
 ﻿@* Referencia al Modelo a utilizar *@
+@using Huellitas.SysVeterinaria.EN.Position_EN
 @model Huellitas.SysVeterinaria.EN.Employee_EN.Employee
 
 @{
     ViewData["Title"] = "Editar Empleado"; // Titulo de la Pestaña
     Layout = "_Layout"; //Permite la navegacion hacia el layout
+    List<Position> positions = ViewBag.Positions as List<Position>;
 }
 <br />
 <br />
@@ -122,11 +124,10 @@
                                 <div class="mb-3" style="width:300px;margin-right:3%">
                                     <label asp-for="Position" class="form-label"></label>
                                     <select class="form-select" name="Position" id="cbxPosition">
-                                        <option value="SELECCIONAR">Seleccionar..</option>
-                                        <option value="VETERINARIO/A">Veterinario/a</option>
-                                        <option value="ENFERMERO/A">Enfermero/a</option>
-                                        <option value="SECRETARIO/A">Secretario/a</option>
-                                        <option value="PERSONAL DE LIMPIEZA">Personal de Limpieza</option>
+                                        @foreach(var position in positions!)
+                                        {
+                                            <option value="@position.Id">@position.Name</option>
+                                        }
                                     </select>
                                     <span asp-validation-for="Position" class="text-danger"></span>
                                 </div>

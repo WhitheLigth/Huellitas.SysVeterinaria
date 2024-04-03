@@ -1,9 +1,11 @@
 ﻿@* Referencia al Modelo a utilizar *@
+@using Huellitas.SysVeterinaria.EN.Position_EN
 @model Huellitas.SysVeterinaria.EN.Employee_EN.Employee
 
 @{
     // Titulo de la Pestaña
     ViewData["Title"] = "Crear Empleado";
+    List<Position> positions = ViewBag.Position as List<Position>;
 }
 <br />
 <br />
@@ -119,15 +121,14 @@
                                     <span asp-validation-for="AreaOfSpecialization" class="text-danger"></span>
                                 </div>
                                 <div class="mb-3" style="width:300px;margin-right:3%">
-                                    <label asp-for="Position" class="form-label"></label>
-                                    <select class="form-select" name="Position">
-                                        <option value="SELECCIONAR">Seleccionar..</option>
-                                        <option value="VETERINARIO/A">Veterinario/a</option>
-                                        <option value="ENFERMERO/A">Enfermero/a</option>
-                                        <option value="SECRETARIO/A">Secretario/a</option>
-                                        <option value="PERSONAL DE LIMPIEZA">Personal de Limpieza</option>
+                                    <label asp-for="IdPosition" class="form-label"></label>
+                                    <select class="form-select" name="IdPosition">
+                                        @foreach(var position in positions!)
+                                        {
+                                            <option value="@position.Id">@position.Name</option>
+                                        }
                                     </select>
-                                    <span asp-validation-for="Position" class="text-danger"></span>
+                                    <span asp-validation-for="IdPosition" class="text-danger"></span>
                                 </div>
                             </div>
                             <div style="display:flex">

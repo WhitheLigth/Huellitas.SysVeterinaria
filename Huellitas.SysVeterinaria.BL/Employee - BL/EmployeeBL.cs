@@ -63,5 +63,12 @@ namespace Huellitas.SysVeterinaria.BL.Employee___BL
             return await EmployeeDAL.SearchAsync(employee);
         }
         #endregion
+
+        #region METODO PARA INCLUIR EL PUESTO O CARGO
+        public async Task<List<Employee>> SearchIncludePositionAsync(Employee employee)
+        {
+            return await EmployeeDAL.SearchIncludePositionAsync(employee);
+        }
+        #endregion
     }
 }

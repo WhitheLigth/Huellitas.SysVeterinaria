@@ -123,7 +123,7 @@
                                 <div class="mb-3" style="width:300px;margin-right:3%">
                                     <label asp-for="IdPosition" class="form-label"></label>
                                     <select class="form-select" name="IdPosition">
-                                        @foreach(var position in positions!)
+                                        @foreach(var position in positions)
                                         {
                                             <option value="@position.Id">@position.Name</option>
                                         }

@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Http;
 using Huellitas.SysVeterinaria.BL.Employee___BL;
 using Huellitas.SysVeterinaria.EN.Employee_EN;
 using Microsoft.AspNetCore.Mvc;
+using Huellitas.SysVeterinaria.BL.Position___BL;
+using Huellitas.SysVeterinaria.EN.Position_EN;
 
 
 #endregion
@@ -14,6 +16,7 @@ namespace Huellitas.SysVeterinaria.Web.Controllers.Employee___Controller
     {
         // Creamos la instancia para acceder a los metodos
         EmployeeBL employeeBL = new EmployeeBL();
+        PositionBL positionBL = new PositionBL();
 
         #region METODO PARA MOSTRAR INDEX
         // Accion Para Mostrar La Vista Index
@@ -27,7 +30,10 @@ namespace Huellitas.SysVeterinaria.Web.Controllers.Employee___Controller
                 employee.Top_Aux = 0;
 
             var employees = await employeeBL.SearchAsync(employee);
+            var positions = await positionBL.GetAllAsync();
+
             ViewBag.Top = employee.Top_Aux;
+            ViewBag.Positions = positions;
             return View(employees);
         }
         #endregion
@@ -37,14 +43,16 @@ namespace Huellitas.SysVeterinaria.Web.Controllers.Employee___Controller
         public async Task<IActionResult> Details(int id)
         {
             var employee = await employeeBL.GetByIdAsync(new Employee { Id = id });
+            employee.Position = await positionBL.GetByIdAsync(new Position { Id = employee.IdPosition });
             return View(employee);
         }
         #endregion
 
         #region METODO PARA CREAR
         // Accion Para Mostrar La Vista De Crear
-        public ActionResult Create()
+        public async Task<ActionResult> Create()
         {
+            ViewBag.Position = await positionBL.GetAllAsync();
             ViewBag.Error = "";
             return View();
         }
@@ -64,6 +72,7 @@ namespace Huellitas.SysVeterinaria.Web.Controllers.Employee___Controller
             catch(Exception ex)
             {
                 ViewBag.Error = ex.Message;
+                ViewBag.Positions = await positionBL.GetAllAsync();
                 return View();
             }
         }
@@ -73,9 +82,23 @@ namespace Huellitas.SysVeterinaria.Web.Controllers.Employee___Controller
         // Accion Que Muestra La Vista De Modificar
         public async Task<IActionResult> Edit(int id)
         {
-            var employee = await employeeBL.GetByIdAsync(new Employee { Id = id });
-            ViewBag.Error = "";
-            return View(employee);
+            try 
+            {
+                var employee = await employeeBL.GetByIdAsync(new Employee { Id = id });
+
+                if(employee  == null)
+                {
+                    return NotFound();
+                }
+
+                ViewBag.Employees = await employeeBL.GetAllAsync();
+                return View(employee);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = "";
+                return View(); // Devolver la vista sin ningún objeto employee
+            }
         }
 
         // Accion Que Recibe Los Datos Del Formulario Para Ser Enviados a La BD
@@ -85,25 +108,33 @@ namespace Huellitas.SysVeterinaria.Web.Controllers.Employee___Controller
         {
             try
             {
+                if(id != employee.Id)
+                {
+                    return BadRequest();
+                }
+
                 employee.ModificationDate = DateTime.Now;
                 int result = await employeeBL.UpdateAsync(employee);
+                TempData["SuccessMessageCreate"] = "Empleado Modificado Exitosamente";
                 return RedirectToAction(nameof(Index));
             }
             catch(Exception ex)
             {
-                ViewBag.Erro = ex.Message;
-                return View();
+                ViewBag.Error = ex.Message;
+                ViewBag.Employees = await employeeBL.GetAllAsync();
+                return View(employee);
             }
         }
         #endregion
 
         #region METODO PARA ELIMINAR
         // Accion Que Muestra La Vista De Eliminar
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(Employee employee)
         {
-            var employee = await employeeBL.GetByIdAsync(new Employee { Id = id });
+            var employeeBD = await employeeBL.GetByIdAsync(employee);
+            employeeBD.Position = await positionBL.GetByIdAsync(new Position { Id = employeeBD.IdPosition });
             ViewBag.Error = "";
-            return View(employee);
+            return View(employeeBD);
         }
 
         // Accion Que Recibe Los Datos Del Formulario Para Ser Enviados a La BD
@@ -113,13 +144,20 @@ namespace Huellitas.SysVeterinaria.Web.Controllers.Employee___Controller
         {
             try
             {
-                int result = await employeeBL.DeleteAsync(employee);
+                Employee employeeBD = await employeeBL.GetByIdAsync(employee);
+                int result = await employeeBL.DeleteAsync(employeeBD);
+                TempData["SuccessMessageDelete"] = "Empleado Eliminado Exitosamente";
                 return RedirectToAction(nameof(Index));
             }
             catch(Exception ex)
             {
                 ViewBag.Error = ex.Message;
-                return View();
+                var employeeBD = await employeeBL.GetByIdAsync(employee);
+                if (employeeBD == null)
+                    employeeBD = new Employee();
+                if(employeeBD.Id > 0)
+                    employeeBD.Position = await positionBL.GetByIdAsync(new Position { Id = employeeBD.IdPosition });
+                return View(employeeBD);
             }
         }
         #endregion

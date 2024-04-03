@@ -1,4 +1,5 @@
 ﻿@* Referencia al Modelo a utilizar *@
+@using Huellitas.SysVeterinaria.EN.Position_EN
 @model IEnumerable<Huellitas.SysVeterinaria.EN.Employee_EN.Employee>
 
 @{
@@ -9,6 +10,7 @@
     int numRegistrosPorPage = 10; //Dato a mostrar en la paginacion
     int[] tops = { 10, 20, 50, -1 }; // para que el user eliga cuantos registros quiere mostrar
     int topActual = Convert.ToInt32(ViewBag.Top); //controla cuanto registros ha seleccionado el usario
+    List<Position> positions = ViewBag.Positions as List<Position>;
 }
 <br />
 <br />
@@ -76,7 +78,7 @@
                 @Html.DisplayNameFor(model => model.Phone)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Position)
+                @Html.DisplayNameFor(model => model.IdPosition)
             </th>
             <th>Acciones</th>
         </tr>
@@ -98,7 +100,7 @@
                     @Html.DisplayFor(modelItem => item.Phone)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Position)
+                    @Html.DisplayFor(modelItem => item.Position!.Name)
                 </td>
                 <td>
                     @Html.ActionLink("Modificar", "Edit", new { id = item.Id }, new { @class = "btn btn-outline-info" }) |

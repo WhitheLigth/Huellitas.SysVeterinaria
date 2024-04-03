@@ -65,7 +65,8 @@
                 title: '¿Seguro de Modificar Este Registro?',
                 icon: 'question',
                 showCancelButton: true,
-                confirmButtonText: 'Si, Modificar Registro'
+                confirmButtonText: 'Si, Modificar Registro',
+                cancelButtonText: 'Cancelar'
             }).then((result) => {
                 if (result.isConfirmed) {
                     form.submit();

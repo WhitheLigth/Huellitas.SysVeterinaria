@@ -38,14 +38,35 @@
             e.preventDefault();
 
             const form = document.getElementById('Form');
-            const inputs = document.querySelectorAll('.form-input');
+            const input = document.getElementById('Name');
 
-            inputs.forEach(function (input) {
-                if (!input.value.trim()) {
-                    // Si el campo está vacío, no hacemos nada
-                    return;
-                }
-            });
+            // Este codigo js que esta comentado es para cuando hay varios inputs y asi nos 
+            // ahorramos varias lineas de codigo
+
+            // const inputs = document.querySelectorAll('.form-input');
+
+            // inputs.forEach(function (input) {
+            //     if (!input.value.trim()) {
+            //         // Si el campo está vacío, no hacemos nada
+            //         return;
+            //     }
+            // });
+
+            if (!input.value.trim()) {
+                return;
+            }
+
+            const regex = /^[A-Za-z]+$/;
+            if (!regex.test(input.value.trim())) {
+                // Si el valor no contiene solo letras, marcamos como inválido
+                valid = false;
+                Swal.fire({
+                    title: 'Error',
+                    text: 'Por favor, ingrese solo letras en el campo.',
+                    icon: 'error'
+                });
+                return;
+            }
 
             Swal.fire({
                 title: '¿Guardar Nuevo Registro?',

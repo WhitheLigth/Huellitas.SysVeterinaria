@@ -49,7 +49,7 @@
             });
             */
 
-            const regex = /^[A-Za-z ]+$/;
+            const regex = /^[A-Za-z/ ]+$/;
             if (!regex.test(input.value.trim())) {
                 // Si el valor no contiene solo letras, marcamos como inválido
                 valid = false;

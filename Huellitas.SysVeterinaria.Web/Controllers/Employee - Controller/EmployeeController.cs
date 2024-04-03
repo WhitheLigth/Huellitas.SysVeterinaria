@@ -91,12 +91,12 @@ namespace Huellitas.SysVeterinaria.Web.Controllers.Employee___Controller
                     return NotFound();
                 }
 
-                ViewBag.Employees = await employeeBL.GetAllAsync();
+                ViewBag.Positions = await positionBL.GetAllAsync();
                 return View(employee);
             }
             catch (Exception ex)
             {
-                ViewBag.Error = "";
+                ViewBag.Error = ex.Message;
                 return View(); // Devolver la vista sin ningún objeto employee
             }
         }
@@ -121,7 +121,7 @@ namespace Huellitas.SysVeterinaria.Web.Controllers.Employee___Controller
             catch(Exception ex)
             {
                 ViewBag.Error = ex.Message;
-                ViewBag.Employees = await employeeBL.GetAllAsync();
+                ViewBag.Positions = await positionBL.GetAllAsync();
                 return View(employee);
             }
         }

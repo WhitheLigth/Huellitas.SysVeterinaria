@@ -50,7 +50,7 @@ namespace Huellitas.SysVeterinaria.Web.Controllers.Employee___Controller
 
         #region METODO PARA CREAR
         // Accion Para Mostrar La Vista De Crear
-        public async Task<ActionResult> Create()
+        public async Task<IActionResult> Create()
         {
             ViewBag.Position = await positionBL.GetAllAsync();
             ViewBag.Error = "";
@@ -72,7 +72,7 @@ namespace Huellitas.SysVeterinaria.Web.Controllers.Employee___Controller
             catch(Exception ex)
             {
                 ViewBag.Error = ex.Message;
-                ViewBag.Positions = await positionBL.GetAllAsync();
+                ViewBag.Position = await positionBL.GetAllAsync();
                 return View();
             }
         }

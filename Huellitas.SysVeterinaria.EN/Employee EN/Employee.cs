@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 // REFERENCIAS NECESARIAS PARA EL CORRECTO FUNCIONAMIENTO
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Huellitas.SysVeterinaria.EN.Position_EN;
 
 #endregion
 
@@ -97,10 +98,10 @@ namespace Huellitas.SysVeterinaria.EN.Employee_EN
         [RegularExpression("^[a-zA-ZáéíóúÁÉÍÓÚñÑ. ]+$", ErrorMessage = "El Area de Especializacion debe contener solo Letras")] // Validamos el tipo de dato
         public string AreaOfSpecialization { get; set; } = string.Empty;
 
+        [ForeignKey("Position")] //Indica que es una llave Foranea
         [Required(ErrorMessage = "El Puesto o Cargo es requerido")] //Indica que es un campo requerido
-        [StringLength(100, ErrorMessage = "Maximo 100 caracteres")] // Indica la longitud maxima para dicho campo
         [Display(Name = "Puesto o Cargo")] // Una tipo traduccion (esto lo vera el cliente) 
-        public string Position { get; set; } = string.Empty;
+        public int IdPosition { get; set; }
 
         [Required(ErrorMessage = "Alergias Conocidas es requerido")] //Indica que es un campo requerido
         [StringLength(100, ErrorMessage = "Maximo 100 caracteres")] // Indica la longitud maxima para dicho campo
@@ -129,5 +130,7 @@ namespace Huellitas.SysVeterinaria.EN.Employee_EN
         // Propiedades No Mapebles
         [NotMapped]
         public int Top_Aux { get; set; } //Propiedad auxiliar
+
+        public Position? Position {  get; set; } // Propiedad de Navegacion
     }
 }

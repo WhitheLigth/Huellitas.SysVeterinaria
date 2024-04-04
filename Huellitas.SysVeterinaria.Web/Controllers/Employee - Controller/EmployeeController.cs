@@ -67,6 +67,7 @@ namespace Huellitas.SysVeterinaria.Web.Controllers.Employee___Controller
                 employee.CreationDate = DateTime.Now;
                 employee.ModificationDate = DateTime.Now;
                 int result = await employeeBL.CreateAsync(employee);
+                TempData["SuccessMessageCreate"] = "Empleado Agregado Exitosamente";
                 return RedirectToAction(nameof(Index));
             }
             catch(Exception ex)
@@ -115,7 +116,7 @@ namespace Huellitas.SysVeterinaria.Web.Controllers.Employee___Controller
 
                 employee.ModificationDate = DateTime.Now;
                 int result = await employeeBL.UpdateAsync(employee);
-                TempData["SuccessMessageCreate"] = "Empleado Modificado Exitosamente";
+                TempData["SuccessMessageUpdate"] = "Empleado Modificado Exitosamente";
                 return RedirectToAction(nameof(Index));
             }
             catch(Exception ex)

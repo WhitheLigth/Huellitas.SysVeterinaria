@@ -42,6 +42,12 @@
             });
         }
 
+        // Mostrar alerta de ViewBag.Error si es necesario
+        @if (!string.IsNullOrEmpty(ViewBag.Error))
+        {
+            @:showErrorAlert('@ViewBag.Error');
+        }
+
         function CreateRecord(e) {
             e.preventDefault();
 
@@ -88,8 +94,5 @@
                 }
             });
         }
-
-        // Esta línea muestra el mensaje de error del ViewBag.Error como una alerta
-        showErrorAlert('@ViewBag.Error');
     </script>
 }

@@ -11,10 +11,13 @@
 <br />
 <br />
 <h2>Crear Nuevo Empleado</h2>
+<span style="color:red">
+    @ViewBag.Error
+</span>
 <hr />
 <div class="row">
     <div style="display:flex">
-        <form asp-action="Create">
+        <form id="Form" asp-action="Create" onsubmit="CreateRecord(event)">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="row">
                 <div class="col-md-16">
@@ -162,6 +165,46 @@
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 
     <script>
+        function CreateRecord(e) {
+            e.preventDefault();
+
+            const form = document.getElementById('Form');
+            const inputs = document.querySelectorAll('.form-input');
+
+            inputs.forEach(function (input) {
+                if (!input.value.trim()) {
+                    // Si el campo está vacío, no hacemos nada
+                    return;
+                }
+            });
+
+            Swal.fire({
+                title: '¿Guardar Nuevo Registro?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Si, Guardar Registro',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
+        }
+
+        function showErrorAlert(message) {
+            Swal.fire({
+                title: 'Error',
+                text: message,
+                icon: 'error'
+            });
+        }
+
+        // Mostrar alerta de ViewBag.Error si es necesario
+        @if (!string.IsNullOrEmpty(ViewBag.Error))
+        {
+            @:showErrorAlert('@ViewBag.Error');
+        }
+
         document.getElementById('inputDui').addEventListener('input', function (event) {
             var inputValue = event.target.value;
             var formattedValue = formatDui(inputValue);
@@ -234,4 +277,5 @@
             });
         });
     </script>
+
 }

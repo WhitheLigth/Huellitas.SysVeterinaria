@@ -23,8 +23,14 @@ namespace Huellitas.SysVeterinaria.DAL.Employee___DAL
             // Un bloque de conexion que mientras se permanezca en el bloque la base de datos permanecera abierta y al terminar se destruira
             using (var dbContext = new ContextDB())
             {
-                dbContext.Add(employee);
-                result = await dbContext.SaveChangesAsync();
+                bool employeeExists = await ExistEmployee(employee, dbContext);
+                if (employeeExists == false)
+                {
+                    dbContext.Add(employee);
+                    result = await dbContext.SaveChangesAsync();
+                }
+                else
+                    throw new Exception("Empleado Ya Existente, Vuelve a Intentarlo");
             }
             return result;  // Si se realizo con exito devuelve 1 sino devuelve 0
         }
@@ -41,28 +47,34 @@ namespace Huellitas.SysVeterinaria.DAL.Employee___DAL
                 var employeeDB = await dbContext.Employees.FirstOrDefaultAsync(c => c.Id == employee.Id);
                 if (employeeDB != null)
                 {
-                    employeeDB.Name = employee.Name;
-                    employeeDB.LastName = employee.LastName;
-                    employeeDB.Dui = employee.Dui;
-                    employeeDB.BirthDate = employee.BirthDate;
-                    employeeDB.Age = employee.Age;
-                    employeeDB.Gender = employee.Gender;
-                    employeeDB.CivilStatus = employee.CivilStatus;
-                    employeeDB.Address = employee.Address;
-                    employeeDB.Phone = employee.Phone;
-                    employeeDB.Email = employee.Email;
-                    employeeDB.EmergencyNumber = employee.EmergencyNumber;
-                    employeeDB.AcademicTitle = employee.AcademicTitle;
-                    employeeDB.WorkExperience = employee.WorkExperience;
-                    employeeDB.AreaOfSpecialization = employee.AreaOfSpecialization;
-                    employeeDB.IdPosition = employee.IdPosition;
-                    employeeDB.KnownAllergies = employee.KnownAllergies;
-                    employeeDB.RelevantMedicalConditions = employee.RelevantMedicalConditions;
-                    employeeDB.CreationDate = employee.CreationDate;
-                    employeeDB.ModificationDate = employee.ModificationDate;
+                    bool employeeExists = await ExistEmployee(employee, dbContext);
+                    if (employeeExists == false)
+                    {
+                        employeeDB.Name = employee.Name;
+                        employeeDB.LastName = employee.LastName;
+                        employeeDB.Dui = employee.Dui;
+                        employeeDB.BirthDate = employee.BirthDate;
+                        employeeDB.Age = employee.Age;
+                        employeeDB.Gender = employee.Gender;
+                        employeeDB.CivilStatus = employee.CivilStatus;
+                        employeeDB.Address = employee.Address;
+                        employeeDB.Phone = employee.Phone;
+                        employeeDB.Email = employee.Email;
+                        employeeDB.EmergencyNumber = employee.EmergencyNumber;
+                        employeeDB.AcademicTitle = employee.AcademicTitle;
+                        employeeDB.WorkExperience = employee.WorkExperience;
+                        employeeDB.AreaOfSpecialization = employee.AreaOfSpecialization;
+                        employeeDB.IdPosition = employee.IdPosition;
+                        employeeDB.KnownAllergies = employee.KnownAllergies;
+                        employeeDB.RelevantMedicalConditions = employee.RelevantMedicalConditions;
+                        employeeDB.CreationDate = employee.CreationDate;
+                        employeeDB.ModificationDate = employee.ModificationDate;
 
-                    dbContext.Update(employeeDB);
-                    result = await dbContext.SaveChangesAsync();
+                        dbContext.Update(employeeDB);
+                        result = await dbContext.SaveChangesAsync();
+                    }
+                    else
+                        throw new Exception("Empleado Ya Existente, Vuelve a Intentarlo");
                 }
             }
             return result;  // Si se realizo con exito devuelve 1 sino devuelve 0
@@ -170,6 +182,19 @@ namespace Huellitas.SysVeterinaria.DAL.Employee___DAL
                 employees = await select.ToListAsync();
             }
             return employees;
+        }
+        #endregion
+
+        #region METODO PARA VALIDAR UNICA EXISTENCIA DEL REGISTRO
+        // Metodo para validar que sea unica existencia del registro en base al Dui/Id
+        private static async Task<bool> ExistEmployee(Employee employee, ContextDB dbContext)
+        {
+            bool result = false;
+            var employees = await dbContext.Employees.FirstOrDefaultAsync(e => e.Dui == employee.Dui && e.Id != employee.Id);
+            if (employees != null && employees.Id > 0 && employees.Dui == employee.Dui)
+                result = true;
+            
+            return result;
         }
         #endregion
     }

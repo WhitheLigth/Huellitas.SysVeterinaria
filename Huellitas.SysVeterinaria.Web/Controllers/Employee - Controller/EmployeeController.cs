@@ -29,7 +29,7 @@ namespace Huellitas.SysVeterinaria.Web.Controllers.Employee___Controller
             else if (employee.Top_Aux == -1)
                 employee.Top_Aux = 0;
 
-            var employees = await employeeBL.SearchAsync(employee);
+            var employees = await employeeBL.SearchIncludePositionAsync(employee);
             var positions = await positionBL.GetAllAsync();
 
             ViewBag.Top = employee.Top_Aux;

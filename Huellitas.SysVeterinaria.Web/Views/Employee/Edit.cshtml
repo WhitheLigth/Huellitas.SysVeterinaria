@@ -25,27 +25,27 @@
                             <div style="display:flex" >
                                 <div class="mb-3" style="margin-right:3%">
                                     <label asp-for="Name" class="form-label"></label>
-                                    <input asp-for="Name" class="form-control" placeholder="Ingresar" />
+                                    <input asp-for="Name" class="form-control" placeholder="Ingresar" autocomplete="off" />
                                     <span asp-validation-for="Name" class="text-danger"></span>
                                 </div>
                                 <div class="mb-3" style=" margin-right:3%">
                                     <label asp-for="LastName" class="form-label"></label>
-                                    <input asp-for="LastName" class="form-control" placeholder="Ingresar" />
+                                    <input asp-for="LastName" class="form-control" placeholder="Ingresar" autocomplete="off" />
                                     <span asp-validation-for="LastName" class="text-danger"></span>
                                 </div>
                                 <div class="mb-3" style=" width:140px; margin-right:3%">
                                     <label asp-for="Dui" class="form-label"></label>
-                                    <input asp-for="Dui" class="form-control" placeholder="xxxxxxxx-x" id="inputDui" />
+                                    <input asp-for="Dui" class="form-control" placeholder="xxxxxxxx-x" id="inputDui" autocomplete="off" />
                                     <span asp-validation-for="Dui" class="text-danger"></span>
                                 </div>
                                 <div class="mb-3" style="margin-right:3%">
                                     <label asp-for="BirthDate" class="form-label"></label>
-                                    <input asp-for="BirthDate" class="form-control" />
+                                    <input asp-for="BirthDate" class="form-control" autocomplete="off" />
                                     <span asp-validation-for="BirthDate" class="text-danger"></span>
                                 </div>
                                 <div class="mb-3" style="width:80px; margin-right:3%">
                                     <label asp-for="Age" class="form-label"></label>
-                                    <input asp-for="Age" class="form-control" />
+                                    <input asp-for="Age" class="form-control" autocomplete="off" />
                                     <span asp-validation-for="Age" class="text-danger"></span>
                                 </div>
                             </div>
@@ -73,24 +73,24 @@
                                 </div>
                                 <div class="mb-2" style=" width:600px; margin-right:3% ">
                                     <label asp-for="Address" class="form-label"></label>
-                                    <input asp-for="Address" type="text" class="form-control" placeholder="Ingresar" />
+                                    <input asp-for="Address" type="text" class="form-control" placeholder="Ingresar" autocomplete="off" />
                                     <span asp-validation-for="Address" class="text-danger"></span>
                                 </div>
                             </div>
                             <div style="display:flex">
                                 <div class="mb-3" style=" width:140px; margin-right:3%">
                                     <label asp-for="Phone" class="form-label"></label>
-                                    <input asp-for="Phone" type="text" class="form-control" placeholder="Ingresar" id="inputPhone" />
+                                    <input asp-for="Phone" type="text" class="form-control" placeholder="Ingresar" id="inputPhone" autocomplete="off" />
                                     <span asp-validation-for="Phone" class="text-danger"></span>
                                 </div>
                                 <div class="mb-3" style="width:500px; margin-right:3%">
                                     <label asp-for="Email" class="form-label"></label>
-                                    <input asp-for="Email" type="text" class="form-control" placeholder="Ingresar" />
+                                    <input asp-for="Email" type="text" class="form-control" placeholder="Ingresar" autocomplete="off" />
                                     <span asp-validation-for="Email" class="text-danger"></span>
                                 </div>
                                 <div class="mb-3" style="width:170px; margin-right:3%">
                                     <label asp-for="EmergencyNumber" class="form-label"></label>
-                                    <input asp-for="EmergencyNumber" type="text" class="form-control" placeholder="Ingresar" id="inputPhoneEmergency"/>
+                                    <input asp-for="EmergencyNumber" type="text" class="form-control" placeholder="Ingresar" id="inputPhoneEmergency" autocomplete="off" />
                                     <span asp-validation-for="EmergencyNumber" class="text-danger"></span>
                                 </div>
                             </div>
@@ -106,19 +106,19 @@
                             <div style="display:flex">
                                 <div class="mb-3" style="width:300px;margin-right:3%">
                                     <label asp-for="AcademicTitle" class="form-label"></label>
-                                    <input asp-for="AcademicTitle" type="text" class="form-control" placeholder="Ingresar" />
+                                    <input asp-for="AcademicTitle" type="text" class="form-control" placeholder="Ingresar" autocomplete="off" />
                                     <span asp-validation-for="AcademicTitle" class="text-danger"></span>
                                 </div>
                                 <div class="mb-3" style="width:600px;margin-right:3%">
                                     <label asp-for="WorkExperience" class="form-label"></label>
-                                    <input asp-for="WorkExperience" class="form-control" />
+                                    <input asp-for="WorkExperience" class="form-control" autocomplete="off" />
                                     <span asp-validation-for="WorkExperience" class="text-danger"></span>
                                 </div>
                             </div>
                             <div style="display:flex">
                                 <div class="mb-3" style="width:600px;margin-right:3%">
                                     <label asp-for="AreaOfSpecialization" class="form-label"></label>
-                                    <input asp-for="AreaOfSpecialization" class="form-control" />
+                                    <input asp-for="AreaOfSpecialization" class="form-control" autocomplete="off" />
                                     <span asp-validation-for="AreaOfSpecialization" class="text-danger"></span>
                                 </div>
                                 <div class="mb-3" style="width:300px;margin-right:3%">
@@ -135,12 +135,12 @@
                             <div style="display:flex">
                                 <div class="mb-3" style="width:450px;margin-right:3%">
                                     <label asp-for="KnownAllergies" class="form-label"></label>
-                                    <input asp-for="KnownAllergies" class="form-control" />
+                                    <input asp-for="KnownAllergies" class="form-control" autocomplete="off" />
                                     <span asp-validation-for="KnownAllergies" class="text-danger"></span>
                                 </div>
                                 <div class="mb-4" style="width:450px;margin-right:3%">
                                     <label asp-for="RelevantMedicalConditions" class="form-label"></label>
-                                    <input asp-for="RelevantMedicalConditions" class="form-control" />
+                                    <input asp-for="RelevantMedicalConditions" class="form-control" autocomplete="off" />
                                     <span asp-validation-for="RelevantMedicalConditions" class="text-danger"></span>
                                 </div>
                             </div>

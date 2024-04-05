@@ -12,6 +12,7 @@ using Huellitas.SysVeterinaria.EN.Pet_Owner_EN;
 using Huellitas.SysVeterinaria.EN.Position_EN;
 using Huellitas.SysVeterinaria.EN.Rol_EN;
 using Huellitas.SysVeterinaria.EN.Services_EN;
+using Huellitas.SysVeterinaria.EN.User_EN;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -35,12 +36,17 @@ namespace Huellitas.SysVeterinaria.DAL
 
         public DbSet<Position> Positions { get; set; } //Coleccion que hace referencia a la tabla de la base de datos
 
+        public DbSet<User> Users { get; set; } //Coleccion que hace referencia a la tabla de la base de datos
+
+
         #endregion
 
         // Metodo de Conexion a la Base de Datos
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Data Source=localhost;Initial Catalog=SysHuellitaVeterinariaDB;Integrated Security=True;Encrypt=True;Trust Server Certificate=True"); //Poner str de concexion local
+            optionsBuilder.UseSqlServer(@"
+Data Source=DESKTOP-32IICB7\SQLEXPRESS;Initial Catalog=SysHuellitaVeterinariaDB;
+                                        Integrated Security=True; Encrypt = False; Trust Server Certificate=True"); //Poner str de concexion local
         }
     }
 }

@@ -17,6 +17,72 @@ namespace Huellitas.SysVeterinaria.DAL.User___DAL
 {
     public class UserDAL
     {
+        #region METODO PARA ENCRIPTAR 
+        private static void EncryptMD5(User user)
+        {
+            using (var md5 = MD5.Create())
+            {
+                var result = md5.ComputeHash(Encoding.ASCII.GetBytes(user.Password));
+                var encryptedStr = "";
+                for (int i = 0; i < result.Length; i++)
+                {
+                    encryptedStr += result[i].ToString("x2").ToLower();
+                }
+                user.Password = encryptedStr;
+            }
+        }
+        #endregion
+
+        #region METODO PARA VALIDAR QUE LA SESION EXISTE
+        private static async Task<bool> ExistsLogin(User user, ContextDB contextDB)
+        {
+            bool result = false;
+            var userLoginExists = await contextDB.Users.FirstOrDefaultAsync(u => u.UserName == user.UserName && u.Id != user.Id);
+            if (userLoginExists != null && userLoginExists.Id > 0 && userLoginExists.UserName == user.UserName)
+                result = true;
+
+            return result;
+        }
+        #endregion
+
+        #region METODO PARA LOGIN
+        public static async Task<User> LoginAsync(User user)
+        {
+            var userDb = new User();
+            using (var contextDB = new ContextDB())
+            {
+                EncryptMD5(user);
+                userDb = await contextDB.Users.FirstOrDefaultAsync(
+                    u => u.UserName == user.UserName && u.Password == user.Password
+                    && u.Status == (byte)User_Status.ACTIVO);
+            }
+            return userDb!;
+        }
+        #endregion
+
+        #region METODO PARA CAMBIAR CONTRASENA
+        public static async Task<int> ChangePasswordAsync(User user, string oldPassword)
+        {
+            int result = 0;
+            var userOldPass = new User { Password = oldPassword };
+            EncryptMD5(userOldPass);
+            using (var contextDB = new ContextDB())
+            {
+                var userDb = await contextDB.User.FirstOrDefaultAsync(u => u.Id == user.Id);
+                if (userOldPass.Password == userDb.Password)
+                {
+                    EncryptMD5(user);
+                    userDb.Password = user.Password;
+                    contextDB.User.Update(userDb);
+                    result = await contextDB.SaveChangesAsync();
+                }
+                else
+                    throw new Exception("La contraseña actual es inválida");
+            }
+            return result;
+        }
+        #endregion
+
         #region METODO PARA CREAR
         // Metodo para crear un nuevo registro en la base de datos
         public static async Task<int> CreateAsync(User user)

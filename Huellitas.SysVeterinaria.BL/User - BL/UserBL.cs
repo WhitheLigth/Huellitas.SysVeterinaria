@@ -70,5 +70,19 @@ namespace Huellitas.SysVeterinaria.BL.User___BL
             return await UserDAL.SearchIncludeRolAsync(user);
         }
         #endregion
+
+        #region METODO PARA VALIDAR LOGIN
+        public async Task<User> LoginAsync(User user)
+        {
+            return await UserDAL.LoginAsync(user);
+        }
+        #endregion
+
+        #region METODO PARA VALIDAR LOGIN
+        public async Task<int> ChangePasswordAsync(User user, string oldPassword)
+        {
+            return await UserDAL.ChangePasswordAsync(user, oldPassword);
+        }
+        #endregion
     }
 }

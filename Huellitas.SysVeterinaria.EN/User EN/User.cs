@@ -55,12 +55,36 @@ namespace Huellitas.SysVeterinaria.EN.User_EN
         [Required(ErrorMessage = "El rol es requerido")] //Indica que es un campo requerido
         [Display(Name = "Rol")] // Una tipo traduccion (esto lo vera el cliente) 
         public int IdRol { get; set; }
+
+        [Required(ErrorMessage = "El estado es requerido")]
+        [Display(Name = "Estado")]
+        public byte Status { get; set; }
+
+        [Display(Name = "Fecha de registro")]
+        public DateTime RegistrationDate { get; set; }
+
         #endregion
 
+        [NotMapped]
+        public int Top_Aux { get; set; } // propiedad auxiliar
+
+        [NotMapped]
+        [Required(ErrorMessage = "La confirmación de la contraseña es requerida")]
+        [DataType(DataType.Password)]
+        [Compare("Password", ErrorMessage = "Las contraseñas no coinciden")]
+        [StringLength(32, ErrorMessage = "La contraseña debe tener entre 6 y 32 caracteres",
+            MinimumLength = 6)]
+        [Display(Name = "Confirmar la contraseña")]
+        public string ConfirmPassword_Aux { get; set; } = string.Empty; //propiedad auxiliar
         // Propiedades No Mapebles
         [NotMapped]
         public int Top_Aux { get; set; } //Propiedad auxiliar
 
         public Role? Rol { get; set; } // Propiedad de Navegacion
+
+        public enum User_Status
+        {
+            ACTIVO = 1, INACTIVO = 2
+        }
     }
 }

@@ -65,7 +65,7 @@ namespace Huellitas.SysVeterinaria.BL.User___BL
         #endregion
 
         #region METODO PARA INCLUIR EL ROL
-        public async Task<List<User>> SearchIncludeRolAsync(User user)
+        public async Task<List<User>> SearchIncludeRoleAsync(User user)
         {
             return await UserDAL.SearchIncludeRolAsync(user);
         }

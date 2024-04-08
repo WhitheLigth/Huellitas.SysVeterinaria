@@ -13,6 +13,7 @@
 <br />
 <br />
 <h1>Mantenimiento Para Roles</h1>
+<br>
 <div class="row">
     <div class="col-md-12">
         <form asp-action="Index">
@@ -20,7 +21,7 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="control-label">Nombre</label>
-                        <input type="text" class="form-control" name="Name" />
+                        <input type="text" class="form-control" name="Name" autocomplete="off"/>
                     </div>
                 </div>
                 <div class="col-md-2">
@@ -52,26 +53,29 @@
     </div>
 </div>
 
+
+<br />
+<h2>Tabla de Resultados</h2>
 <table class="table table-responsive table-striped paginationjs">
     <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Name)
             </th>
-            <th></th>
+            <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
+            <tr data-page="@numPage">
                 <td>
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    @Html.ActionLink("Modificar", "Edit", new { id = item.Id }, new { @class = "btn btn-outline-info" }) |
+                    @Html.ActionLink("Detalles", "Details", new { id = item.Id }, new { @class = "btn btn-outline-secondary" }) |
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.Id }, new { @class = "btn btn-outline-danger" })
                 </td>
             </tr>
             numRegistros++;
@@ -103,4 +107,36 @@
             </ul>
         </div>
     </div>
+}
+
+@section Scripts {
+    <script>
+        // Verificar si hay un mensaje de éxito en TempData
+        const successMessageCreate = '@TempData["SuccessMessageCreate"]';
+        if (successMessageCreate) {
+            Swal.fire(
+                '¡Guardado Exitosamente!',
+                successMessageCreate,
+                'success'
+            );
+        }
+
+        const successMessageUpdate = '@TempData["SuccessMessageUpdate"]';
+        if (successMessageUpdate) {
+            Swal.fire(
+                '¡Modificado Exitosamente!',
+                successMessageUpdate,
+                'success'
+            );
+        }
+
+        const successMessageDelete = '@TempData["SuccessMessageDelete"]';
+        if (successMessageDelete) {
+            Swal.fire(
+                '¡Eliminado Exitosamente!',
+                successMessageDelete,
+                'success'
+            );
+        }
+    </script>
 }

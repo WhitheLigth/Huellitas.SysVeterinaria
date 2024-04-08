@@ -45,10 +45,9 @@ namespace Huellitas.SysVeterinaria.EN.User_EN
         [RegularExpression("^[a-zA-ZáéíóúÁÉÍÓÚñÑ. ]+$", ErrorMessage = "El Nombre debe contener solo Letras")] // Validamos el tipo de dato
         public string Login { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "El nombre de Usuario es requerido")] //Indica que es un campo requerido
+        [Required(ErrorMessage = "La contrasena de Usuario es requerido")] //Indica que es un campo requerido
         [StringLength(50, ErrorMessage = "Maximo 50 caracteres")] // Indica la longitud maxima para dicho campo
         [Display(Name = "Nombre de Usuario")] // Una tipo traduccion (esto lo vera el cliente) 
-        [RegularExpression("^[a-zA-ZáéíóúÁÉÍÓÚñÑ. ]+$", ErrorMessage = "El Nombre debe contener solo Letras")] // Validamos el tipo de dato
         public string Password { get; set; } = string.Empty;
 
         [ForeignKey("Rol")] //Indica que es una llave Foranea

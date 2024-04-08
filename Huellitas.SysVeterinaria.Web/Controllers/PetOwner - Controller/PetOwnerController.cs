@@ -4,12 +4,15 @@ using Microsoft.AspNetCore.Http;
 using Huellitas.SysVeterinaria.BL.Pet_Owner___BL;
 using Huellitas.SysVeterinaria.EN.Pet_Owner_EN;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 
 
 #endregion
 
 namespace Huellitas.SysVeterinaria.Web.Controllers.PetOwner___Controller
 {
+    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)] //protegemos el controlador para el publico
     public class PetOwnerController : Controller
     {
         // Creamos la instnacia para acceder a los metodos

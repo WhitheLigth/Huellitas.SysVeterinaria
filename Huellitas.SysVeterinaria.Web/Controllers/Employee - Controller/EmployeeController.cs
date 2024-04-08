@@ -6,12 +6,15 @@ using Huellitas.SysVeterinaria.EN.Employee_EN;
 using Microsoft.AspNetCore.Mvc;
 using Huellitas.SysVeterinaria.BL.Position___BL;
 using Huellitas.SysVeterinaria.EN.Position_EN;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 
 
 #endregion
 
 namespace Huellitas.SysVeterinaria.Web.Controllers.Employee___Controller
 {
+    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)] //protegemos el controlador para el publico
     public class EmployeeController : Controller
     {
         // Creamos la instancia para acceder a los metodos

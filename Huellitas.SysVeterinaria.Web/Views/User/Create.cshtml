@@ -1,83 +1,191 @@
-﻿@model Huellitas.SysVeterinaria.EN.User_EN.User
+﻿@* Referencia al Modelo a utilizar *@
+@using Huellitas.SysVeterinaria.EN.Rol_EN
+@model Huellitas.SysVeterinaria.EN.User_EN.User
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Crear Usuario";
+    List<Role> roles = ViewBag.Role as List<Role>;
+
 }
-
-<h1>Create</h1>
-
-<h4>User</h4>
+<br />
+<br />
+<br />
+<h2>Crear Nuevo Usuario</h2>
+<span style="color:red">
+    @ViewBag.Error
+</span>
 <hr />
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
+    <div style="display:flex">
+        <form id="Form" asp-action="Create" onsubmit="CreateRecord(event)">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Id" class="control-label"></label>
-                <input asp-for="Id" class="form-control" />
-                <span asp-validation-for="Id" class="text-danger"></span>
+            <div class="row">
+                <div class="col-md-16">
+                    <div class="card">
+                        <div class="card-header">Informacion Personal</div>
+                        <div class="card-body">
+                            <div style="display:flex">
+                                <div class="mb-3" style="margin-right:3%">
+                                    <div class="form-group">
+                                        <label asp-for="Name" class="form-label"></label>
+                                        <input asp-for="Name"  class="form-control" placeholder="Ingresar" autocomplete="off" />
+                                        <span asp-validation-for="Name" class="text-danger"></span>
+                                    </div>
+                                    <div class="mb-3" style="margin-right:3%">
+                                        <label asp-for="LastName" class="form-label"></label>
+                                        <input asp-for="LastName" class="form-control" placeholder="Ingresar" autocomplete="off" />
+                                        <span asp-validation-for="LastName" class="text-danger"></span>
+                                    </div>
+                                    <div class="mb-3" style="margin-right:3%">
+                                        <label asp-for="Dui" class="form-label"></label>
+                                        <input asp-for="Dui" class="form-control" placeholder="xxxxxxxx-x" autocomplete="off" />
+                                        <span asp-validation-for="Dui" class="text-danger"></span>
+                                    </div>
+                                    <div class="mb-3" style="margin-right:3%">
+                                        <label asp-for="Login" class="form-label"></label>
+                                        <input asp-for="Login" class="form-control" placeholder="Ingresar" autocomplete="off" />
+                                        <span asp-validation-for="Login" class="text-danger"></span>
+                                    </div>
+                                    <div class="mb-3" style="margin-right:3%">
+                                        <label asp-for="Password" class="form-label"></label>
+                                        <input asp-for="Password" class="form-control" placeholder="Ingresar" autocomplete="off" />
+                                        <span asp-validation-for="Password" class="text-danger"></span>
+                                    </div>
+                                    <div class="mb-3" style="width:300px;margin-right:3%">
+                                        <label asp-for="IdRole" class="form-label"></label>
+                                        <select class="form-select" name="IdRole">
+                                            @foreach (var role in roles)
+                                            {
+                                                <option value="@role.Id">@role.Name</option>
+                                            }
+                                        </select>
+                                        <span asp-validation-for="IdRole" class="text-danger"></span>
+                                    </div>
+                                    <div class="mb-3" style="margin-right:3%">
+                                        <label asp-for="Status" class="form-label"></label>
+                                        <input asp-for="Status" class="form-control" placeholder="Ingresar" autocomplete="off" />
+                                        <span asp-validation-for="Status" class="text-danger"></span>
+                                    </div>
+                                    <div class="mb-3" style="margin-right:3%">
+                                        <label asp-for="RegistrationDate" class="form-label"></label>
+                                        <input asp-for="RegistrationDate" class="form-control" placeholder="Ingresar" autocomplete="off" />
+                                        <span asp-validation-for="RegistrationDate" class="text-danger"></span>
+                                    </div>
+                                    <div class="mb-3" style="margin-right:3%">
+                                        <label asp-for="Top_Aux" class="form-label"></label>
+                                        <input asp-for="Top_Aux" class="form-control" placeholder="Ingresar" autocomplete="off" />
+                                        <span asp-validation-for="Top_Aux" class="text-danger"></span>
+                                    </div>
+                                    <div class="mb-3" style="margin-right:3%">
+                                        <label asp-for="ConfirmPassword_Aux" class="form-label"></label>
+                                        <input asp-for="ConfirmPassword_Aux" class="form-control" placeholder="Ingresar" autocomplete="off" />
+                                        <span asp-validation-for="ConfirmPassword_Aux" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="submit" value="Create" class="btn btn-primary" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
+            <div class="form-group mb-3" style="margin-right:3%">
+                <input type="submit" value="Crear Usuario" class="btn btn-primary" style="margin-right:3%; width:200px" />
+                <a asp-action="Index">Regresar</a>
             </div>
-            <div class="form-group">
-                <label asp-for="LastName" class="control-label"></label>
-                <input asp-for="LastName" class="form-control" />
-                <span asp-validation-for="LastName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Dui" class="control-label"></label>
-                <input asp-for="Dui" class="form-control" />
-                <span asp-validation-for="Dui" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Login" class="control-label"></label>
-                <input asp-for="Login" class="form-control" />
-                <span asp-validation-for="Login" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" class="form-control" />
-                <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="IdRole" class="control-label"></label>
-                <input asp-for="IdRole" class="form-control" />
-                <span asp-validation-for="IdRole" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Status" class="control-label"></label>
-                <input asp-for="Status" class="form-control" />
-                <span asp-validation-for="Status" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="RegistrationDate" class="control-label"></label>
-                <input asp-for="RegistrationDate" class="form-control" />
-                <span asp-validation-for="RegistrationDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Top_Aux" class="control-label"></label>
-                <input asp-for="Top_Aux" class="form-control" />
-                <span asp-validation-for="Top_Aux" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ConfirmPassword_Aux" class="control-label"></label>
-                <input asp-for="ConfirmPassword_Aux" class="form-control" />
-                <span asp-validation-for="ConfirmPassword_Aux" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+            <div>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        function CreateRecord(e) {
+            e.preventDefault();
+
+            const form = document.getElementById('Form');
+            const inputs = document.querySelectorAll('.form-input');
+
+            inputs.forEach(function (input) {
+                if (!input.value.trim()) {
+                    // Si el campo está vacío, no hacemos nada
+                    return;
+                }
+            });
+
+            Swal.fire({
+                title: '¿Guardar Nuevo Registro?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Si, Guardar Registro',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
+        }
+
+        function showErrorAlert(message) {
+            Swal.fire({
+                title: 'Error',
+                text: message,
+                icon: 'error'
+            });
+        }
+
+        // Mostrar alerta de ViewBag.Error si es necesario
+        @if (!string.IsNullOrEmpty(ViewBag.Error))
+        {
+            @:showErrorAlert('@ViewBag.Error');
+        }
+
+            document.getElementById('inputDui').addEventListener('input', function (event) {
+                var inputValue = event.target.value;
+                var formattedValue = formatDui(inputValue);
+                event.target.value = formattedValue;
+            });
+
+        function formatDui(inputValue) {
+            inputValue = inputValue.replace(/\D/g, ''); // Remover todos los caracteres que no sean dígitos
+            var formattedValue = '';
+            for (var i = 0; i < inputValue.length; i++) {
+                if (i == 8) {
+                    formattedValue += '-' + inputValue.charAt(i);
+                } else {
+                    formattedValue += inputValue.charAt(i);
+                }
+            }
+            return formattedValue;
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const inputPhone = document.getElementById('inputPhone');
+            const inputPhoneEmergency = document.getElementById('inputPhoneEmergency');
+
+            function formatPhoneNumber(input) {
+                let phoneNumber = input.value.replace(/\D/g, ''); // Elimina cualquier carácter que no sea número
+                if (phoneNumber.length > 4) {
+                    phoneNumber = phoneNumber.slice(0, 4) + '-' + phoneNumber.slice(4, 8); // Formatea el número con un guion después de los primeros 4 dígitos
+                }
+                input.value = phoneNumber;
+            }
+
+            inputPhone.addEventListener('input', function (e) {
+                formatPhoneNumber(e.target);
+            });
+
+            inputPhoneEmergency.addEventListener('input', function (e) {
+                formatPhoneNumber(e.target);
+            });
+        });
+    </script>
+
 }

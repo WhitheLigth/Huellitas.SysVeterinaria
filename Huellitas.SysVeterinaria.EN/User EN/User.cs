@@ -43,7 +43,7 @@ namespace Huellitas.SysVeterinaria.EN.User_EN
         [StringLength(50, ErrorMessage = "Maximo 50 caracteres")] // Indica la longitud maxima para dicho campo
         [Display(Name = "Nombre de Usuario")] // Una tipo traduccion (esto lo vera el cliente) 
         [RegularExpression("^[a-zA-ZáéíóúÁÉÍÓÚñÑ. ]+$", ErrorMessage = "El Nombre debe contener solo Letras")] // Validamos el tipo de dato
-        public string UserName { get; set; } = string.Empty;
+        public string Login { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "El nombre de Usuario es requerido")] //Indica que es un campo requerido
         [StringLength(50, ErrorMessage = "Maximo 50 caracteres")] // Indica la longitud maxima para dicho campo
@@ -54,7 +54,7 @@ namespace Huellitas.SysVeterinaria.EN.User_EN
         [ForeignKey("Rol")] //Indica que es una llave Foranea
         [Required(ErrorMessage = "El rol es requerido")] //Indica que es un campo requerido
         [Display(Name = "Rol")] // Una tipo traduccion (esto lo vera el cliente) 
-        public int IdRol { get; set; }
+        public int IdRole { get; set; }
 
         [Required(ErrorMessage = "El estado es requerido")]
         [Display(Name = "Estado")]
@@ -78,9 +78,8 @@ namespace Huellitas.SysVeterinaria.EN.User_EN
         public string ConfirmPassword_Aux { get; set; } = string.Empty; //propiedad auxiliar
         // Propiedades No Mapebles
         [NotMapped]
-        public int Top_Aux { get; set; } //Propiedad auxiliar
 
-        public Role? Rol { get; set; } // Propiedad de Navegacion
+        public Role? Role { get; set; } // Propiedad de Navegacion
 
         public enum User_Status
         {

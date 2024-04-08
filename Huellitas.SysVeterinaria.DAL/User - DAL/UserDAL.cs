@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Security.Cryptography;
 
 // Referencias necesarias para el correcto funcionamiento
 using Huellitas.SysVeterinaria.EN.User_EN;
@@ -37,8 +38,8 @@ namespace Huellitas.SysVeterinaria.DAL.User___DAL
         private static async Task<bool> ExistsLogin(User user, ContextDB contextDB)
         {
             bool result = false;
-            var userLoginExists = await contextDB.Users.FirstOrDefaultAsync(u => u.UserName == user.UserName && u.Id != user.Id);
-            if (userLoginExists != null && userLoginExists.Id > 0 && userLoginExists.UserName == user.UserName)
+            var userLoginExists = await contextDB.Users.FirstOrDefaultAsync(u => u.Login == user.Login && u.Id != user.Id);
+            if (userLoginExists != null && userLoginExists.Id > 0 && userLoginExists.Login == user.Login)
                 result = true;
 
             return result;
@@ -53,7 +54,7 @@ namespace Huellitas.SysVeterinaria.DAL.User___DAL
             {
                 EncryptMD5(user);
                 userDb = await contextDB.Users.FirstOrDefaultAsync(
-                    u => u.UserName == user.UserName && u.Password == user.Password
+                    u => u.Login == user.Login && u.Password == user.Password
                     && u.Status == (byte)User_Status.ACTIVO);
             }
             return userDb!;
@@ -68,12 +69,12 @@ namespace Huellitas.SysVeterinaria.DAL.User___DAL
             EncryptMD5(userOldPass);
             using (var contextDB = new ContextDB())
             {
-                var userDb = await contextDB.User.FirstOrDefaultAsync(u => u.Id == user.Id);
+                var userDb = await contextDB.Users.FirstOrDefaultAsync(u => u.Id == user.Id);
                 if (userOldPass.Password == userDb.Password)
                 {
                     EncryptMD5(user);
                     userDb.Password = user.Password;
-                    contextDB.User.Update(userDb);
+                    contextDB.Users.Update(userDb);
                     result = await contextDB.SaveChangesAsync();
                 }
                 else
@@ -91,7 +92,7 @@ namespace Huellitas.SysVeterinaria.DAL.User___DAL
             // Un bloque de conexion que mientras se permanezca en el bloque la base de datos permanecera abierta y al terminar se destruira
             using (var dbContext = new ContextDB())
             {
-                bool userExists = await ExistRole(user, dbContext);
+                bool userExists = await ExistsLogin(user, dbContext);
                 if (userExists == false)
                 {
                     dbContext.Add(user);
@@ -121,9 +122,9 @@ namespace Huellitas.SysVeterinaria.DAL.User___DAL
                         userDB.Name = user.Name;
                         userDB.LastName = user.LastName;
                         userDB.Dui = user.Dui;
-                        userDB.UserName = user.UserName;
+                        userDB.Login = user.Login;
                         userDB.Password = user.Password;
-                        userDB.IdRol = user.IdRol;
+                        userDB.IdRole = user.IdRole;
 
                         dbContext.Update(userDB);
                         result = await dbContext.SaveChangesAsync();
@@ -233,7 +234,7 @@ namespace Huellitas.SysVeterinaria.DAL.User___DAL
             using (var dbContext = new ContextDB())
             {
                 var select = dbContext.Users.AsQueryable();
-                select = QuerySelect(select, user).Include(u => u.Rol).AsQueryable();
+                select = QuerySelect(select, user).Include(u => u.Role).AsQueryable();
                 users = await select.ToListAsync();
             }
             return users;

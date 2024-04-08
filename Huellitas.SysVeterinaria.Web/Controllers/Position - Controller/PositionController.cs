@@ -7,12 +7,15 @@ using Huellitas.SysVeterinaria.BL.Services___BL;
 using Huellitas.SysVeterinaria.EN.Services_EN;
 using Huellitas.SysVeterinaria.EN.Position_EN;
 using Huellitas.SysVeterinaria.DAL.Services___DAL;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 
 
 #endregion
 
 namespace Huellitas.SysVeterinaria.Web.Controllers.Position___Controller
 {
+    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)] //protegemos el controlador para el publico
     public class PositionController : Controller
     {
         // Creamos la instancia para acceder a los metodos

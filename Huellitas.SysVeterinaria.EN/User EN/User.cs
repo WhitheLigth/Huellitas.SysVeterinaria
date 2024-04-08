@@ -81,9 +81,11 @@ namespace Huellitas.SysVeterinaria.EN.User_EN
 
         public Role? Role { get; set; } // Propiedad de Navegacion
 
-        public enum User_Status
-        {
-            ACTIVO = 1, INACTIVO = 2
-        }
+      
+    }
+
+    public enum User_Status
+    {
+        ACTIVO = 1, INACTIVO = 2
     }
 }

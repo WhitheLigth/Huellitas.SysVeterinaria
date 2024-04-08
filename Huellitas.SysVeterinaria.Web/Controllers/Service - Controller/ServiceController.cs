@@ -6,6 +6,8 @@ using Huellitas.SysVeterinaria.BL.Services___BL;
 using Huellitas.SysVeterinaria.EN.Services_EN;
 using Huellitas.SysVeterinaria.BL.Employee___BL;
 using Huellitas.SysVeterinaria.EN.Employee_EN;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 
 
 
@@ -13,6 +15,7 @@ using Huellitas.SysVeterinaria.EN.Employee_EN;
 
 namespace Huellitas.SysVeterinaria.Web.Controllers.Service___Controller
 {
+    [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)] //protegemos el controlador para el publico
     public class ServiceController : Controller
     {
         // Creamos la instancia para acceder a los metodos

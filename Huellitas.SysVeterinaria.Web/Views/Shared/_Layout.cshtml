@@ -96,6 +96,22 @@
                             </a>
                         </li>
                         }
+                        <!-- Opciones que para Empleado-->
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Empleado"))
+                        {
+                            <li class="nav-small-cap">
+                                <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                                <span class="hide-menu">Registro Interno</span>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link" asp-area="" asp-controller="PetOwner" asp-action="Index" aria-expanded="false">
+                                    <span>
+                                        <i class="ti ti-tournament"></i>
+                                    </span>
+                                    <span class="hide-menu">Dueño de mascota</span>
+                                </a>
+                            </li>
+                        }
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->
